@@ -1,0 +1,12 @@
+{{ define "main" }}
+<h1 class="mark">{{ partial "wordmark-hero.html" . }}</h1>
+<p class="note">{{ site.Params.tagline }}</p>
+
+{{ with site.GetPage "/topics" }}
+<ul class="topiclist">
+	{{ range .Sections }}
+	<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+	{{ end }}
+</ul>
+{{ end }}
+{{ end }}

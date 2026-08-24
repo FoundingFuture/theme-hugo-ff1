@@ -1,0 +1,17 @@
+<aside class="rail">
+	<a class="brand" href="/" aria-label="{{ site.Title }} home">{{ partial "wordmark.html" . }}</a>
+	<nav class="railnav">
+		{{ $topics := site.GetPage "/topics" }}
+		{{ range site.Menus.main }}
+		{{ if and (eq .Name "Topics") $topics $topics.Sections }}
+		<details class="submenu">
+			<summary>{{ .Name }}</summary>
+			<p class="allof"><a href="{{ .URL }}">All topics</a></p>
+			{{ partial "topictree.html" $topics }}
+		</details>
+		{{ else }}
+		<a href="{{ .URL }}">{{ .Name }}</a>
+		{{ end }}
+		{{ end }}
+	</nav>
+</aside>

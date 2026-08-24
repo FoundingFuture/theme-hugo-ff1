@@ -1,0 +1,8 @@
+{{ $sections := .Sections }}
+{{ if $sections }}
+<nav class="topicmenu">
+	{{ range $sections }}
+	<a href="{{ .RelPermalink }}">{{ .Title }}</a>
+	{{ end }}
+</nav>
+{{ end }}

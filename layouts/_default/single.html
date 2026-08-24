@@ -1,0 +1,6 @@
+{{ define "main" }}
+{{ with .CurrentSection.Parent }}{{ partial "topicmenu.html" . }}{{ end }}
+<article class="piece{{ with .Params.layoutclass }} {{ . }}{{ end }}">
+{{ .Content }}
+</article>
+{{ end }}
