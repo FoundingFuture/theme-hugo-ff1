@@ -39,16 +39,24 @@ disableKinds = ["rss", "sitemap"]   # not "taxonomy", not "term"
 
 ## The line at the foot
 
-Every page ends with a line crediting Hugo and this theme. It is there
-because attribution costs a sentence and is easy to forget, not because the
-licence asks for it. Drop it whenever you like:
+One line, at the foot of the viewport, carrying your site's name, its
+tagline and its domains. A short page still puts it on the screen's last
+line.
 
-```toml
-[params]
-  colophon = false
+Replace it by writing your own at `layouts/partials/footer.html`. Hugo
+uses yours instead, with nothing to configure. Crediting Hugo and this
+theme is one thing you might put there:
+
+```html
+<footer class="foot">
+  <span>This website was generated using
+    <a href="https://gohugo.io/">Hugo</a> and the
+    <a href="{{ site.Params.themeURL }}">FoundingFuture&nbsp;I</a> theme.</span>
+</footer>
 ```
 
-`params.themeURL` points the theme's name wherever you prefer.
+The theme does not ship that line itself. Attribution you cannot remove
+is not a courtesy, and the licence does not ask for one.
 
 ## Making it yours
 
