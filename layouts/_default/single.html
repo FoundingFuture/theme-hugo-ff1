@@ -1,6 +1,14 @@
 {{ define "main" }}
-{{ with .CurrentSection.Parent }}{{ partial "topicmenu.html" . }}{{ end }}
-<article class="piece{{ with .Params.layoutclass }} {{ . }}{{ end }}">
-{{ .Content }}
-</article>
+<main class="piece">
+  {{ partial "crumb.html" . }}
+  <header class="head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="deck">{{ . }}</p>{{ end }}
+  </header>
+  {{ .Content }}
+  {{ with .Params.sources }}
+  <div class="cites">{{ delimit . " &middot; " }}</div>
+  {{ end }}
+</main>
+{{ partial "footer.html" . }}
 {{ end }}

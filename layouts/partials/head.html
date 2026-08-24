@@ -2,9 +2,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ block "title" . }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.tagline }}{{ end }}">
-<meta name="robots" content="noindex">
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-{{ $css := resources.Get "css/site.css" | minify | fingerprint }}
+{{ with site.Params.robots }}<meta name="robots" content="{{ . }}">{{ end }}
+{{ range site.Params.icons }}<link rel="{{ .rel }}" href="{{ .href }}"{{ with .type }} type="{{ . }}"{{ end }}{{ with .sizes }} sizes="{{ . }}"{{ end }}>
+{{ end }}
+{{ $css := resources.Get "css/ff1.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{/* a site adds its own on top, at assets/css/custom.css. Nothing to configure. */}}
+{{ with resources.Get "css/custom.css" }}
+{{ $extra := . | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $extra.RelPermalink }}" integrity="{{ $extra.Data.Integrity }}">
+{{ end }}

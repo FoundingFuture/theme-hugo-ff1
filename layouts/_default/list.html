@@ -1,15 +1,33 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-{{ with .Description }}<p class="note">{{ . }}</p>{{ end }}
-{{ .Content }}
+<main class="piece">
+  {{ partial "crumb.html" . }}
+  <header class="head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="deck">{{ . }}</p>{{ end }}
+  </header>
+  {{ with .Content }}<div class="body-copy">{{ . }}</div>{{ end }}
 
-{{ partial "topicmenu.html" . }}
+  {{ with .Sections }}
+  <section class="sec">
+    {{ partial "section-head.html" (dict "title" "Subtopics" "count" (printf "%d" (len .))) }}
+    <div class="cards">
+    {{- range . }}
+      <a class="card" href="{{ .RelPermalink }}">
+        <h3>{{ .Title }}</h3>
+        {{ with .Description }}<p>{{ . }}</p>{{ end }}
+        <div class="meta"><span>{{ len .RegularPagesRecursive }} pieces</span></div>
+      </a>
+    {{- end }}
+    </div>
+  </section>
+  {{ end }}
 
-{{ with .RegularPages }}
-<ul class="pieces">
-	{{ range . }}
-	<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-	{{ end }}
-</ul>
-{{ end }}
+  {{ with .RegularPages }}
+  <section class="sec">
+    {{ partial "section-head.html" (dict "title" "Pieces" "count" (printf "%d" (len .))) }}
+    {{ partial "index-rows.html" (dict "pages" (sort . "Date" "desc")) }}
+  </section>
+  {{ end }}
+</main>
+{{ partial "footer.html" . }}
 {{ end }}

@@ -1,3 +1,6 @@
-<footer class="sitefoot">
-	<span>foundingfuture.com</span><span class="sep" aria-hidden="true">·</span><span>foundingfuture.net</span>
+<footer class="foot">
+  <span><b>{{ site.Title }}</b> &nbsp;{{ site.Params.tagline }}</span>
+  {{- range $i, $d := site.Params.domains }}
+  <span{{ if eq $i 0 }} class="sp"{{ end }}>{{ $d }}</span>
+  {{- end }}
 </footer>

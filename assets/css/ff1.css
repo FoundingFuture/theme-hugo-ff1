@@ -1,0 +1,452 @@
+@font-face{font-family:'Bricolage';src:url('/fonts/bricolage-grotesque.woff2') format('woff2');font-weight:400 800;font-display:swap}
+@font-face{font-family:'Instrument Sans';src:url('/fonts/instrument-sans-latin.woff2') format('woff2');font-weight:400 500;font-display:swap}
+@font-face{font-family:'Asimovian';src:url('/fonts/asimovian-latin.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Plex Mono';src:url('/fonts/ibm-plex-mono-400.woff2') format('woff2');font-weight:400;font-display:swap}
+
+:root{
+  --paper:#EBEFF3;      /* cool pale slate, the ground */
+  --surface:#FFFFFF;
+  --sunk:#E1E7ED;       /* tinted band, groups without whitespace */
+  --ink:#0D1620;
+  --body:#44515E;
+  --muted:#78868F;
+  --line:#D3DBE3;
+  --teal:#00706B;
+  --amber:#B36A1E;
+  --indigo:#3A49A6;
+  --rose:#A93356;
+
+  --display:'Bricolage',ui-sans-serif,system-ui,sans-serif;
+  --text:'Instrument Sans',ui-sans-serif,system-ui,sans-serif;
+  --mono:'Plex Mono',ui-monospace,monospace;
+
+  --rail:16rem;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--body);
+  font-family:var(--text);font-size:15.5px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+
+/* ---- brand cell: the logo fills the rail column, no bar above it ---- */
+.brandcell{
+  border-right:1px solid var(--line);
+  background:var(--ink);
+}
+/* the wordmark is currentColor, so the block inverts by colour alone */
+.brand{display:block;padding:1.05rem 1rem .5rem;color:var(--surface);text-decoration:none}
+.brand svg{display:block;width:100%;height:auto}
+.est{
+  margin:0;padding:0 1rem .95rem;font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.26em;text-transform:uppercase;text-align:center;text-indent:.13em;
+  color:color-mix(in oklab,var(--surface) 62%, var(--ink));
+}
+.strip{
+  display:flex;align-items:center;justify-content:center;
+  padding:.85rem 1.25rem;min-width:0;background:var(--surface);
+  border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;
+}
+.strip p{
+  margin:0;min-width:0;text-align:center;color:var(--body);
+  font-family:'Asimovian',var(--display),sans-serif;
+  font-size:1.2rem;letter-spacing:.03em;
+  text-wrap:balance;   /* even the two lines when it wraps */
+}
+
+/* ---- page frame ---- */
+.frame{
+  position:relative;
+  display:grid;grid-template-columns:var(--rail) minmax(0,1fr);
+  background:linear-gradient(to right,var(--surface) 0 var(--rail),var(--paper) var(--rail));
+}
+/* the logo and the nav travel together, pinned, as one column */
+.side{
+  display:flex;flex-direction:column;position:sticky;top:0;
+  align-self:start;max-height:100vh;
+}
+/* the wrapper is plumbing on a wide screen and a dropdown on a narrow one.
+   Its content is forced visible here, so being closed costs nothing. */
+.railwrap{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+.railwrap>summary{display:none}
+.railwrap::details-content{
+  content-visibility:visible;
+  display:flex;flex-direction:column;flex:1 1 auto;min-height:0;
+}
+.body{display:flex;flex-direction:column;min-width:0}
+
+.rail{
+  border-right:1px solid var(--line);
+  flex:1 1 auto;min-height:0;overflow-y:auto;padding:1.1rem 0 2rem;
+}
+.rail h2{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+  margin:0 0 .5rem;padding:0 1.1rem;font-weight:400;
+}
+.rail ul+h2{margin-top:1.5rem}
+.rail ul{list-style:none;margin:0 0 .25rem;padding:0}
+.rail li a{
+  display:flex;align-items:baseline;gap:.5rem;
+  padding:.28rem 1.1rem;text-decoration:none;font-size:.92rem;color:var(--body);
+}
+.rail li a:hover{background:var(--sunk);color:var(--ink)}
+.rail li a .n{margin-left:auto;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.rail li ul a{padding-left:2rem;font-size:.86rem;color:var(--muted)}
+
+/* ---- section headers: a rule with a label sitting in it ---- */
+.sec{border-bottom:1px solid var(--line)}
+.sec>header{
+  display:flex;align-items:baseline;gap:.75rem;
+  padding:.6rem 1.25rem;background:var(--sunk);border-bottom:1px solid var(--line);
+}
+.sec>header h2{
+  margin:0;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);font-weight:400;
+}
+.sec>header .c{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.sec>header .more{margin-left:auto;font-family:var(--mono);font-size:.7rem;color:var(--teal);text-decoration:none}
+
+/* ---- index rows: the densest thing on the page ---- */
+.rows{display:grid;grid-template-columns:1fr 1fr}
+.row{
+  display:grid;grid-template-columns:2.5rem minmax(0,1fr) auto;
+  gap:.75rem;align-items:baseline;padding:.55rem 1.25rem;
+  border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+  text-decoration:none;background:var(--surface);
+}
+.row:hover{background:var(--sunk)}
+.row .d{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.row .t{color:var(--ink);font-size:.95rem;line-height:1.35;min-width:0}
+.row .t em{font-style:normal;color:var(--muted)}
+.k{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;
+  padding:.1rem .35rem;border:1px solid currentColor;border-radius:2px;white-space:nowrap;
+}
+.k[data-t="teal"]{color:var(--teal)}
+.k[data-t="amber"]{color:var(--amber)}
+.k[data-t="indigo"]{color:var(--indigo)}
+.k[data-t="rose"]{color:var(--rose)}
+
+/* ---- topic cards: spine carries the topic colour ---- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5rem,1fr))}
+.card{
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--surface);padding:.9rem 1.1rem 1rem;
+  border-top:3px solid var(--tc);text-decoration:none;display:block;
+  --tc:var(--teal);transition:background .18s ease;
+}
+.card[data-t="amber"]{--tc:var(--amber)}
+.card[data-t="indigo"]{--tc:var(--indigo)}
+.card[data-t="rose"]{--tc:var(--rose)}
+.card:hover{background:color-mix(in oklab,var(--tc) 10%, var(--surface))}
+.card h3{
+  margin:0 0 .3rem;font-family:var(--display);font-weight:600;
+  font-size:1.15rem;line-height:1.15;letter-spacing:-.015em;color:var(--ink);
+}
+.card p{margin:0 0 .6rem;font-size:.88rem;line-height:1.5;color:var(--body)}
+.card .meta{display:flex;gap:.75rem;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+
+/* ---- the long read: two columns, tight but breathing ---- */
+.read{padding:1.15rem 1.25rem 1.6rem;background:var(--surface)}
+.read .lead{
+  font-family:var(--display);font-weight:600;font-size:clamp(1.35rem,2.2vw,1.75rem);
+  line-height:1.2;letter-spacing:-.02em;color:var(--ink);
+  margin:0 0 .55rem;max-width:44ch;
+}
+.read .sub{
+  font-size:.98rem;line-height:1.58;color:var(--body);
+  margin:0 0 1rem;max-width:68ch;
+}
+.cols{columns:2;column-gap:2.5rem;column-rule:1px solid var(--line)}
+.cols p{margin:0 0 .85rem;font-size:.94rem;line-height:1.62;text-align:left}
+.cols h4{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);margin:1.2rem 0 .4rem;font-weight:400;
+  break-after:avoid;
+}
+.pull{
+  border-left:3px solid var(--amber);padding:.15rem 0 .15rem .8rem;margin:.2rem 0 .9rem;
+  font-family:var(--display);font-weight:400;font-size:1.05rem;line-height:1.35;color:var(--ink);
+  break-inside:avoid;
+}
+
+/* ---- software: dense tagged list ---- */
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(21rem,1fr))}
+.item{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.6rem .9rem;align-items:baseline;
+  padding:.6rem 1.25rem;border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+  background:var(--surface);text-decoration:none;
+}
+.item:hover{background:var(--sunk)}
+.item .nm{font-family:var(--mono);font-size:.9rem;color:var(--ink)}
+.item .ds{grid-column:1/-1;font-size:.86rem;color:var(--muted);line-height:1.45;margin-top:-.15rem}
+
+footer.foot{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;align-items:baseline;
+  padding:.85rem 1.25rem;background:var(--sunk);
+  font-family:var(--mono);font-size:.7rem;color:var(--muted);
+}
+footer.foot b{color:var(--ink);font-weight:400}
+footer.foot .sp{margin-left:auto}
+
+@media (max-width:60rem){
+  :root{--rail:100%;--menugap:.8rem}
+  /* the masthead keeps two columns even here, or the logo sits alone beside
+     a blank half screen, which is the opposite of collapsing to save room */
+  .frame{grid-template-columns:auto minmax(0,1fr)}
+  .side,.body{display:contents}
+  /* the wordmark is two rows tall, so the tagline and the menu control
+     stack beside it and the white beneath the tagline is used */
+  .brandcell{grid-column:1;grid-row:1 / span 2}
+  .strip{grid-column:2;grid-row:1;position:relative;z-index:0;
+    justify-content:flex-start;align-items:center;border-bottom:none}
+  /* an empty cell behind the bar's row. Spanning the strip over it made the
+     tagline's height share two rows and spill onto the bar. */
+  .frame::before{content:'';grid-column:2;grid-row:2;background:var(--surface);
+    border-bottom:1px solid var(--line)}
+  .strip p{text-align:left;font-size:1.05rem}
+  .brand svg{max-width:11rem}
+  /* display:contents lets the button sit in the masthead while the panel it
+     opens spans the full width on its own row */
+  .railwrap{display:contents}
+  .railwrap>summary{grid-column:2;grid-row:2;align-self:end;
+    position:relative;z-index:2}
+  /* the panel is anchored to the button's column, not the page */
+  .railwrap::details-content{grid-column:2;grid-row:3;position:relative}
+  main{grid-column:1 / -1;grid-row:3}
+  /* the panel floats over the content rather than taking a row. In flow it
+     opened inside column two and stretched the wordmark's cell beside it. */
+  .rail{
+    position:absolute;left:1.25rem;right:1.25rem;z-index:30;
+    top:calc(-1 * var(--menugap) - 2px);
+    background:var(--surface);border:1px solid var(--line);border-top:none;
+    border-radius:0 0 8px 8px;
+    box-shadow:0 22px 46px -22px rgba(13,22,32,.55);
+    max-height:min(74vh,40rem);overflow-y:auto;
+  }
+  /* the bar and the panel read as one piece while it is open */
+  .railwrap[open]>summary{border-radius:7px 7px 0 0}
+  .brandcell{order:1;border-right:none;border-bottom:1px solid var(--line)}
+  .brand{padding:.75rem 1rem .35rem}
+  .est{padding-bottom:.7rem;letter-spacing:.2em}
+  .strip{order:2}
+  .frame{background:var(--paper)}
+  /* navigation comes before the content, but folded away until asked for */
+  .railwrap:not([open])::details-content{content-visibility:hidden}
+  .railwrap::details-content{display:block}
+  /* it is the only way to navigate on a phone, so it reads as a control
+     rather than as a label. Same pill the topics use. */
+  .railwrap>summary{
+    display:flex;align-items:center;gap:.55rem;cursor:pointer;list-style:none;
+    margin:0 1.25rem var(--menugap);padding:.4rem .85rem;border-radius:7px;
+    background:var(--ink);color:var(--surface);
+    font-family:var(--mono);font-size:1.02rem;
+    letter-spacing:.16em;text-transform:uppercase;
+    transition:background .18s ease;
+  }
+  .railwrap>summary:hover{background:var(--body)}
+  /* the bar is a whole line, so it says what is behind it */
+  .railwrap>summary .what{
+    margin-left:auto;text-transform:none;letter-spacing:.06em;
+    font-size:.85rem;opacity:.65;
+  }
+  .railwrap>summary .what.open{display:none}
+  .railwrap[open]>summary .what.shut{display:none}
+  .railwrap[open]>summary .what.open{display:inline}
+  .railwrap>summary::-webkit-details-marker{display:none}
+  .railwrap>summary .chev{
+    margin-left:.7rem;width:.42rem;height:.42rem;border-right:1.5px solid currentColor;
+    border-bottom:1.5px solid currentColor;transform:rotate(45deg);
+    margin-top:-.2rem;transition:transform .3s ease;
+  }
+  .railwrap[open]>summary .chev{transform:rotate(-135deg);margin-top:.1rem}
+  .strip{flex-direction:column;align-items:flex-start;gap:.45rem}
+    /* content first on a phone, navigation after it */
+  main{order:4}
+  .rows,.cols{grid-template-columns:100%;columns:1}
+  .cols{column-rule:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---- topic menu: each topic carries its colour, open state fills it ---- */
+.rail .topics{--r:7px;list-style:none;margin:0 0 .25rem;padding:0 .6rem}
+.topics>li{margin-bottom:.1rem}
+.rail .topics{--tc:var(--teal)}
+.topics details[data-t="indigo"]{--tc:var(--indigo)}
+.topics details[data-t="rose"]{--tc:var(--rose)}
+.topics details[data-t="amber"]{--tc:var(--amber)}
+
+.topics summary{
+  display:flex;align-items:center;gap:.5rem;cursor:pointer;list-style:none;
+  padding:.36rem .5rem;border-radius:var(--r);font-size:.95rem;color:var(--body);
+  transition:background .18s ease,color .18s ease;
+}
+.topics summary::-webkit-details-marker{display:none}
+
+/* About is not a topic. Same pill, no colour, no count, no chevron. */
+.topics .plain a{
+  display:flex;align-items:center;padding:.36rem .5rem;border-radius:var(--r);
+  font-size:.95rem;color:var(--body);text-decoration:none;
+  transition:background .18s ease,color .18s ease;
+}
+.topics .plain a:hover{background:color-mix(in oklab,var(--ink) 8%, transparent);color:var(--ink)}
+.topics .plain a[aria-current]{
+  background:color-mix(in oklab,var(--ink) 13%, transparent);
+  color:var(--ink);font-weight:500;
+}
+.topics summary:hover{background:color-mix(in oklab,var(--tc) 13%, transparent);color:var(--ink)}
+.topics details[open]>summary{background:var(--tc);color:#fff}
+.topics details[open]>summary .n{color:#fff;opacity:.75}
+.topics summary .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+
+/* the chevron turns as the section opens */
+.topics .chev{
+  flex:0 0 auto;width:.42rem;height:.42rem;margin-right:.1rem;
+  border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:rotate(-45deg);opacity:.65;
+  transition:transform .42s cubic-bezier(.22,.61,.36,1),opacity .2s ease;
+}
+.topics details[open]>summary .chev{transform:rotate(45deg);opacity:.9}
+
+.topics details>ul{
+  list-style:none;margin:0;
+  background:color-mix(in oklab,var(--tc) 10%, var(--surface));
+  border-radius:10px;
+  padding:0 .35rem;   /* horizontal only. vertical padding floors the grid
+                         item's height and jolts the end of every close */
+}
+.topics details ul li{margin-bottom:.1rem}
+.topics details ul li:first-child{margin-top:.32rem}
+.topics details ul li:last-child{margin-bottom:.32rem}
+.topics details ul a{
+  display:flex;align-items:baseline;gap:.5rem;padding:.3rem .5rem;
+  border-radius:6px;text-decoration:none;font-size:.9rem;color:var(--body);
+  background:transparent;
+  transition:background .18s ease,color .18s ease;
+}
+.topics details ul a:hover{background:color-mix(in oklab,var(--tc) 24%, var(--surface));color:var(--ink)}
+.topics details ul a[aria-current]{
+  background:color-mix(in oklab,var(--tc) 34%, var(--surface));
+  color:var(--ink);font-weight:500;
+}
+.topics details ul .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+
+/* height animation, where the browser supports it; elsewhere it just opens */
+/* a grid row from 0fr to 1fr animates on its own, where animating to a
+   block-size of auto needs interpolate-size, which fewer browsers have.
+   content-visibility is held visible so the height is the only thing that
+   moves: Safari flips it the instant a section closes, which drops the
+   neighbours in one step and then jumps again when the transition ends.
+   visibility, delayed by the same duration, keeps the collapsed rows off
+   the tab order without taking part in the layout. */
+@supports selector(::details-content){
+  .topics details::details-content{
+    content-visibility:visible;
+    display:grid;grid-template-rows:0fr;overflow:hidden;
+    transition:grid-template-rows .48s cubic-bezier(.22,.61,.36,1);
+  }
+  .topics details[open]::details-content{grid-template-rows:1fr}
+  .topics details>ul{
+    min-height:0;overflow:hidden;
+    visibility:hidden;transition:visibility 0s linear .48s;
+  }
+  .topics details[open]>ul{visibility:visible;transition-delay:0s}
+}
+
+/* the rows fade and slide with the height, in both directions. A transition
+   rather than a keyframe, because a keyframe on [open] has nothing to run
+   against once the attribute is gone */
+.topics details>ul>li{
+  opacity:0;transform:translateY(-7px);
+  transition:opacity .26s ease,transform .26s cubic-bezier(.22,.61,.36,1);
+}
+.topics details[open]>ul>li{opacity:1;transform:none}
+.topics details[open]>ul>li:nth-child(1){transition-delay:.05s}
+.topics details[open]>ul>li:nth-child(2){transition-delay:.1s}
+.topics details[open]>ul>li:nth-child(3){transition-delay:.15s}
+.topics details[open]>ul>li:nth-child(4){transition-delay:.2s}
+.topics details[open]>ul>li:nth-child(5){transition-delay:.25s}
+
+@media (max-width:34rem){
+  /* one column, so every part is placed in the order it should read. The
+     bar defaulted to order 0 and jumped above the wordmark, and the panel
+     kept grid-column 2 from the wider layout, which is an implicit column
+     outside a single-column grid, so it opened off screen. */
+  :root{--menugap:.7rem}
+  .frame{grid-template-columns:100%}
+  .brandcell{grid-column:1;grid-row:1;border-right:none;border-bottom:none}
+  .strip{grid-column:1;grid-row:2;align-items:center;border-left:none}
+  .frame::before{grid-column:1;grid-row:3}
+  .railwrap>summary{grid-column:1;grid-row:3;margin:var(--menugap) 1.25rem}
+  .railwrap::details-content{grid-column:1;grid-row:4;position:relative}
+  main{grid-column:1;grid-row:5}
+  .rail{grid-column:1;grid-row:auto}
+  .strip p{text-align:center;font-size:1rem}
+  .brand svg{max-width:14rem}
+  .brand,.est{margin-inline:auto;max-width:14rem}
+}
+
+/* ================= deep topic tree ================= */
+/* Instrument Sans has no small-cap glyphs, so the browser scaled capitals
+   instead and the shrunken letters came out lighter than the full ones.
+   These are drawn at their size, so the whole label holds one weight. */
+@font-face{
+  font-family:'SmallCaps';
+  src:url('/fonts/source-sans-3-smallcaps.woff2') format('woff2');
+  font-weight:400;font-display:swap;
+}
+
+/* ---- level two that opens further: a row, never a filled pill ---- */
+.topics details.sub>summary{
+  padding:.3rem .5rem;border-radius:6px;font-size:.9rem;
+  color:var(--body);background:transparent;
+}
+.topics details.sub>summary:hover{background:color-mix(in oklab,var(--tc) calc(22% + var(--p) * 12%), var(--surface));color:var(--ink)}
+.topics details.sub[open]>summary{
+  background:color-mix(in oklab,var(--tc) calc(28% + var(--p) * 12%), var(--surface));
+  color:var(--ink);font-weight:500;
+}
+.topics details.sub[open]>summary .n{color:var(--muted);opacity:1}
+.topics details.sub>summary .chev{width:.36rem;height:.36rem}
+
+/* ---- depth alternates instead of climbing ----
+   The panel takes its parity from the row above it, and the row hands its
+   own children the opposite. The two properties live on different elements,
+   so neither refers to itself and nothing cycles. Every panel therefore
+   contrasts with its parent at any depth, and no level needs declaring. */
+.topics details>ul{--p:var(--q,0)}
+.topics details>ul>li{--q:calc(1 - var(--p))}
+.topics details>ul{
+  background:color-mix(in oklab,var(--tc) calc(10% + var(--p) * 12%), var(--surface));
+}
+.topics details.sub>ul{border-radius:8px;margin:0 0 .1rem .3rem;padding:0 .3rem}
+.topics details.sub ul a{font-size:.86rem;padding:.26rem .45rem}
+.topics details ul a:hover{background:color-mix(in oklab,var(--tc) calc(22% + var(--p) * 12%), var(--surface));color:var(--ink)}
+.topics details.sub ul li:first-child{margin-top:.26rem}
+.topics details.sub ul li:last-child{margin-bottom:.26rem}
+
+/* ---- anything that opens is set in small caps. Flat rows stay as they
+       are, so the typography says which rows go deeper ---- */
+.topics summary .nm{
+  font-family:'SmallCaps',var(--text);
+  font-variant-caps:small-caps;letter-spacing:.03em;font-weight:400;
+}
+.topics details:not(.sub)>summary .nm{font-size:1.06rem}
+.topics details.sub>summary .nm{font-size:1rem}
+
+/* the main page row names the topic, so it takes the topic's lettering */
+.topics .all a{
+  font-family:'SmallCaps',var(--text);
+  font-variant-caps:small-caps;letter-spacing:.03em;
+}
+
+/* ---- a container only groups. No page of its own, so no count ---- */
+.topics details.container>summary .nm{color:var(--muted)}
+.topics details.container>summary .chev{margin-left:auto}
+.topics details.container[open]>summary{background:transparent;font-weight:400}
+.topics details.container[open]>summary .nm{color:var(--ink)}
+.topics details.container>summary{font-size:.9rem}

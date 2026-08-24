@@ -1,0 +1,9 @@
+{{/* Where this page sits, named the whole way down. Ancestors come back
+     nearest first, so they are reversed to read as a path. */}}
+<div class="crumb">
+{{- range (collections.Reverse .Ancestors) }}{{ if not .IsHome }}
+  <a href="{{ .RelPermalink }}">{{ .Title }}</a><span class="sep">/</span>
+{{- end }}{{ end }}
+  <span class="here">{{ .Title }}</span>
+  {{- with site.Params.formula }}<span class="formula">{{ . }}</span>{{ end }}
+</div>

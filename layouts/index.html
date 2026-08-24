@@ -1,12 +1,43 @@
 {{ define "main" }}
-<h1 class="mark">{{ partial "wordmark-hero.html" . }}</h1>
-<p class="note">{{ site.Params.tagline }}</p>
+{{ $topics := site.GetPage "/topics" }}
+{{ $recent := where site.RegularPages "Section" "!=" "" }}
 
-{{ with site.GetPage "/topics" }}
-<ul class="topiclist">
-	{{ range .Sections }}
-	<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-	{{ end }}
-</ul>
+{{ with $recent }}
+<section class="sec">
+  {{ partial "section-head.html" (dict "title" "Index"
+      "count" (printf "%d pieces" (len .))
+      "more" (dict "url" ($topics.RelPermalink | default "/") "label" "everything")) }}
+  {{ partial "index-rows.html" (dict "pages" (first 8 (sort . "Date" "desc"))) }}
+</section>
 {{ end }}
+
+{{ with $topics }}
+{{ $palette := site.Params.palette | default (slice "teal" "indigo" "rose" "amber") }}
+<section class="sec">
+  {{ partial "section-head.html" (dict "title" "Topics"
+      "count" (printf "%d active" (len .Sections))
+      "more" (dict "url" .RelPermalink "label" "all topics")) }}
+  <div class="cards">
+  {{- range $i, $s := .Sections }}
+    <a class="card" href="{{ $s.RelPermalink }}" data-t="{{ $s.Params.colour | default (index $palette (mod $i (len $palette))) }}">
+      <h3>{{ $s.Title }}</h3>
+      {{ with $s.Description }}<p>{{ . }}</p>{{ end }}
+      <div class="meta">
+        <span>{{ len $s.RegularPagesRecursive }} pieces</span>
+        {{ with len $s.Sections }}<span>{{ . }} subtopic{{ if ne . 1 }}s{{ end }}</span>{{ end }}
+      </div>
+    </a>
+  {{- end }}
+  </div>
+</section>
+{{ end }}
+
+{{ with .Content }}
+<section class="sec">
+  {{ partial "section-head.html" (dict "title" "Reading") }}
+  <div class="read">{{ . }}</div>
+</section>
+{{ end }}
+
+{{ partial "footer.html" . }}
 {{ end }}

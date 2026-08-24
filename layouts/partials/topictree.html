@@ -1,8 +1,37 @@
-<ul class="topictree">
-	{{ range .Sections }}
-	<li>
-		<a href="{{ .RelPermalink }}">{{ .Title }}</a>
-		{{ if .Sections }}{{ partial "topictree.html" . }}{{ end }}
-	</li>
-	{{ end }}
+{{/* One list of sections, and itself again for anything below them.
+
+     page      the page being rendered, so the branch it sits on opens
+     sections  what to list here
+     parent    the section these belong to, or nothing at the top
+     depth     0 at the top. Everything deeper is a row, not a pill.
+     group     siblings sharing a name close one another. Empty at the
+               top, so opening a topic never moves the one you clicked.
+*/}}
+{{ $page := .page }}
+{{ $sections := .sections }}
+{{ $parent := .parent }}
+{{ $depth := .depth }}
+{{ $group := .group }}
+{{ $palette := site.Params.palette | default (slice "teal" "indigo" "rose" "amber") }}
+
+<ul{{ if eq $depth 0 }} class="topics"{{ end }}>
+{{- with $parent }}
+  {{- if .Content }}
+  <li class="all"><a href="{{ .RelPermalink }}"{{ if eq $page . }} aria-current="page"{{ end }}>{{ i18n "mainPage" | default "Main page" }}</a></li>
+  {{- end }}
+{{- end }}
+{{- range $i, $s := $sections }}
+  {{- $kids := $s.Sections }}
+  {{- $count := len $s.RegularPagesRecursive }}
+  {{- $here := or (eq $page $s) ($page.IsDescendant $s) }}
+  {{- if $kids }}
+  <li><details{{ with $group }} name="{{ . }}"{{ end }} class="{{ if gt $depth 0 }}sub{{ end }}{{ if not $s.Content }} container{{ end }}"{{ if $here }} open{{ end }}
+    {{- if eq $depth 0 }} data-t="{{ $s.Params.colour | default (index $palette (mod $i (len $palette))) }}"{{ end }}>
+    <summary><span class="nm">{{ $s.Title }}</span>{{ if $count }}<span class="n">{{ $count }}</span>{{ end }}<span class="chev" aria-hidden="true"></span></summary>
+    {{ partial "topictree.html" (dict "page" $page "sections" $kids "parent" $s "depth" (add $depth 1) "group" $s.RelPermalink) }}
+  </details></li>
+  {{- else }}
+  <li><a href="{{ $s.RelPermalink }}"{{ if eq $page $s }} aria-current="page"{{ end }}>{{ $s.Title }}{{ if $count }} <span class="n">{{ $count }}</span>{{ end }}</a></li>
+  {{- end }}
+{{- end }}
 </ul>
