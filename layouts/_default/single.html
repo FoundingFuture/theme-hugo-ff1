@@ -15,8 +15,8 @@
   {{/* Reading straight through a topic, rather than going back each time. */}}
   {{ if or .PrevInSection .NextInSection }}
   <nav class="pager">
-    {{ with .PrevInSection }}<a class="prev" href="{{ .RelPermalink }}"><span>Previous</span>{{ .Title }}</a>{{ end }}
-    {{ with .NextInSection }}<a class="next" href="{{ .RelPermalink }}"><span>Next</span>{{ .Title }}</a>{{ end }}
+    {{ with .PrevInSection }}<a class="prev" href="{{ .RelPermalink }}"><span>{{ i18n "previous" }}</span>{{ .Title }}</a>{{ end }}
+    {{ with .NextInSection }}<a class="next" href="{{ .RelPermalink }}"><span>{{ i18n "next" }}</span>{{ .Title }}</a>{{ end }}
   </nav>
   {{ end }}
 
@@ -25,7 +25,7 @@
   {{ $related := first 4 (site.RegularPages.Related .) }}
   {{ with $related }}
   <section class="sec">
-    {{ partial "section-head.html" (dict "title" "Near this") }}
+    {{ partial "section-head.html" (dict "title" (i18n "nearThis")) }}
     {{ partial "index-rows.html" (dict "pages" . "showSection" true) }}
   </section>
   {{ end }}

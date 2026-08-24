@@ -13,15 +13,17 @@
   </div>
 
   <details class="railwrap">
-   <summary class="menubtn"><span>Menu</span><span class="what shut">open</span><span class="what open">close</span><span class="chev" aria-hidden="true"></span></summary>
+   <summary class="menubtn"><span>{{ i18n "menu" }}</span><span class="what shut">open</span><span class="what open">close</span><span class="chev" aria-hidden="true"></span></summary>
   {{ partial "rail.html" . }}
    </details>
  </div>
 
  <div class="body">
+  {{ with site.Params.tagline }}
   <div class="strip">
-    <p>{{ site.Params.tagline }}</p>
+    <p>{{ . }}</p>
   </div>
+  {{ end }}
 
   {{ block "main" . }}{{ end }}
  </div>

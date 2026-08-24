@@ -5,7 +5,7 @@
 {{ $n := len .Fragments.Identifiers }}
 {{ if ge $n 3 }}
 <details class="toc">
-  <summary><span class="nm">On this page</span><span class="n">{{ $n }}</span><span class="chev" aria-hidden="true"></span></summary>
+  <summary><span class="nm">{{ i18n "onThisPage" }}</span><span class="n">{{ $n }}</span><span class="chev" aria-hidden="true"></span></summary>
   {{ .TableOfContents }}
 </details>
 {{ end }}

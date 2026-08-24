@@ -1,31 +1,32 @@
 {{ define "main" }}
 <main class="piece">
-{{ $topics := site.GetPage "/topics" }}
+{{/* Every piece that lives in a section, whichever section that is. The
+     header calls this the index, so it has to be all of them; narrowing it
+     to site.MainSections would list one section and still say everything. */}}
 {{ $recent := where site.RegularPages "Section" "!=" "" }}
+{{ $sections := site.Home.Sections }}
 
 {{ with $recent }}
 <section class="sec">
-  {{ partial "section-head.html" (dict "title" "Index"
-      "count" (printf "%d pieces" (len .))
-      "more" (dict "url" ($topics.RelPermalink | default "/") "label" "everything")) }}
-  {{ partial "index-rows.html" (dict "pages" (first 8 (sort . "Date" "desc"))) }}
+  {{ partial "section-head.html" (dict "title" (i18n "index")
+      "count" (i18n "pieceCount" (len .))) }}
+  {{ partial "index-rows.html" (dict "pages" (first 8 (sort . "Date" "desc")) "showSection" true) }}
 </section>
 {{ end }}
 
-{{ with $topics }}
+{{ with $sections }}
 {{ $palette := site.Params.palette | default (slice "teal" "indigo" "rose" "amber") }}
 <section class="sec">
-  {{ partial "section-head.html" (dict "title" "Topics"
-      "count" (printf "%d active" (len .Sections))
-      "more" (dict "url" .RelPermalink "label" "all topics")) }}
+  {{ partial "section-head.html" (dict "title" (i18n "sections")
+      "count" (i18n "activeCount" (len .))) }}
   <div class="cards">
-  {{- range $i, $s := .Sections }}
+  {{- range $i, $s := . }}
     <a class="card" href="{{ $s.RelPermalink }}" data-t="{{ $s.Params.colour | default (index $palette (mod $i (len $palette))) }}">
       <h3>{{ $s.Title }}</h3>
       {{ with $s.Description }}<p>{{ . }}</p>{{ end }}
       <div class="meta">
-        <span>{{ len $s.RegularPagesRecursive }} pieces</span>
-        {{ with len $s.Sections }}<span>{{ . }} subtopic{{ if ne . 1 }}s{{ end }}</span>{{ end }}
+        <span>{{ i18n "pieceCount" (len $s.RegularPagesRecursive) }}</span>
+        {{ with len $s.Sections }}<span>{{ i18n "subsectionCount" . }}</span>{{ end }}
       </div>
     </a>
   {{- end }}
@@ -35,7 +36,7 @@
 
 {{ with .Content }}
 <section class="sec">
-  {{ partial "section-head.html" (dict "title" "Reading") }}
+  {{ partial "section-head.html" (dict "title" (i18n "reading")) }}
   <div class="read">{{ . }}</div>
 </section>
 {{ end }}

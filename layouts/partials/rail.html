@@ -1,7 +1,20 @@
-{{ $topics := site.GetPage "/topics" }}
+{{/* The menu is every top-level section of the site, and everything under
+     them, as deep as the content goes.
+
+     site.Home.Sections rather than a section this theme names. Hugo's own
+     guidance to theme authors is not to hardcode section names, so that a
+     site keeps whatever folder names it already had. A site that wants a
+     section out of the menu says so in that section's front matter:
+
+       build:
+         list: never
+         render: always
+
+     which keeps its url and keeps it in search, and takes it out of here. */}}
+{{ $sections := site.Home.Sections }}
 <aside class="rail">
-{{- with $topics }}
-  {{ partial "topictree.html" (dict "page" $ "sections" .Sections "depth" 0 "group" "") }}
+{{- with $sections }}
+  {{ partial "topictree.html" (dict "page" $ "sections" . "depth" 0 "group" "") }}
 {{- end }}
 {{- with site.Params.extraNav }}
   <ul class="topics">
@@ -12,7 +25,7 @@
   </ul>
 {{- end }}
 {{- with site.Params.kinds }}
-  <h2>{{ $.Scratch.Set "x" "" }}{{ .title | default "Kinds" }}</h2>
+  <h2>{{ .title | default "Kinds" }}</h2>
   <ul>
   {{- range .items }}
     <li><a href="{{ partial "href.html" .url }}">{{ .name }}{{ with .count }} <span class="n">{{ . }}</span>{{ end }}</a></li>

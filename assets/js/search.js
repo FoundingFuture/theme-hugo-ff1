@@ -9,6 +9,13 @@
 
   var all = [], total = 0, ready = false;
 
+  // The words come from the template, which got them from i18n. "999" is a
+  // stand-in the plural rule resolves, so the count can be swapped in here.
+  var say = main.dataset;
+  function pieces(n) {
+    return (n === 1 ? say.one : say.many).replace(/\d+/, n);
+  }
+
   fetch(main.dataset.index)
     .then(function (r) { return r.json(); })
     .then(function (data) {
@@ -18,7 +25,7 @@
       if (box.value) run();          // typed while the index was still loading
     })
     .catch(function () {
-      tally.textContent = 'The index did not load.';
+      tally.textContent = say.failed;
     });
 
   // A term is worth more in a title than in the body, so a piece about the
@@ -70,11 +77,11 @@
     hits.textContent = '';
 
     if (!terms.length) {
-      tally.textContent = total + ' pieces';
+      tally.textContent = pieces(total);
       return;
     }
     if (!ready) {
-      tally.textContent = 'Loading the index…';
+      tally.textContent = say.loading;
       return;
     }
 
@@ -89,9 +96,7 @@
     for (var j = 0; j < found.length; j++) frag.appendChild(row(found[j][1]));
     hits.appendChild(frag);
 
-    tally.textContent = found.length === 0 ? 'Nothing matches that.'
-                      : found.length === 1 ? '1 piece'
-                      : found.length + ' pieces';
+    tally.textContent = found.length ? pieces(found.length) : say.none;
   }
 
   box.addEventListener('input', run);

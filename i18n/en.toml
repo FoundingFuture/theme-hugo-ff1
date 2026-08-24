@@ -1,0 +1,78 @@
+# Every word the theme puts on a page.
+#
+# A site overrides any of these by shipping its own i18n/en.toml. Hugo merges
+# the site's file over the theme's, key by key, so a site changes one word
+# without restating the rest.
+#
+# The defaults read as a personal publishing site, because that is what the
+# theme was cut for. A documentation site will want "Sections" where this
+# says "Topics".
+
+[mainPage]
+other = "Main page"
+
+[menu]
+other = "Menu"
+
+[index]
+other = "Index"
+
+[everything]
+other = "everything"
+
+[sections]
+other = "Topics"
+
+[allSections]
+other = "all topics"
+
+[subsections]
+other = "Subtopics"
+
+[piecesTitle]
+other = "Pieces"
+
+[pieceCount]
+one = "{{ .Count }} piece"
+other = "{{ .Count }} pieces"
+
+[subsectionCount]
+one = "{{ .Count }} subtopic"
+other = "{{ .Count }} subtopics"
+
+[activeCount]
+one = "{{ .Count }} active"
+other = "{{ .Count }} active"
+
+[furtherDown]
+other = "Further down"
+
+[nearThis]
+other = "Near this"
+
+[onThisPage]
+other = "On this page"
+
+[previous]
+other = "Previous"
+
+[next]
+other = "Next"
+
+[reading]
+other = "Reading"
+
+[searchLabel]
+other = "Search"
+
+[searchPlaceholder]
+other = "A word from a title, the text or a tag"
+
+[searchNothing]
+other = "Nothing matches that."
+
+[searchLoading]
+other = "Loading the index…"
+
+[searchFailed]
+other = "The index did not load."

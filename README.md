@@ -8,11 +8,50 @@ same thing wherever it appears. Rows that open are set in small capitals, so
 the lettering says which way is deeper. Two small scripts run, both of them
 for finding things, and the pages work without either.
 
-## What it expects
+## Dropping it into a site you already have
 
-- Hugo 0.146 or newer, extended not required
-- Sections under `content/topics/`, at any depth
-- `params.tagline` for the line beside the wordmark
+Set `theme` and build. The theme names none of your folders and requires no
+parameter, so an existing site keeps the structure it has.
+
+```toml
+theme = "foundingfuture-i"
+```
+
+The menu is `site.Home.Sections`: every top-level section, and everything
+under it, as deep as your content goes. Hugo's own advice to theme authors
+is not to hardcode section names, so `content/posts/` and `content/docs/`
+appear under those names, and a folder you add tomorrow appears by itself.
+
+Anything you do set is additive:
+
+- `params.tagline` puts a line across the top. Without it there is no band.
+- `params.palette` gives the top-level sections their colours in order.
+- `params.extraNav` adds rows below the tree, for pages that are not
+  sections.
+
+## Keeping a section out of the menu
+
+Two questions decide it, and both are Hugo's rather than the theme's.
+
+**Is it a section at all?** A folder holding `_index.md` is a section, so it
+is a menu item. A folder holding `index.md` is a single page, and the files
+beside it are that page's resources. An article that offers a download wants
+the second shape, and then there is nothing to exclude:
+
+```text
+content/software/the-font/
+  index.md              the article
+  specimen.woff2        the download
+```
+
+**A real section you want reachable but unlisted?** Say so in its front
+matter. It keeps its url, its pages stay in search, and the menu skips it.
+
+```yaml
+build:
+  list: never
+  render: always
+```
 
 ## Tags
 
@@ -103,6 +142,25 @@ is not a courtesy, and the licence does not ask for one.
 The theme ships a plain wordmark. Put your own at
 `layouts/partials/wordmark.html` in your site and Hugo will use it instead.
 Nothing else needs overriding to look like your own.
+
+## Changing the words
+
+Every word the theme puts on a page comes from `i18n/en.toml`. Ship your own
+and Hugo merges it over the theme's, key by key, so you change one word
+without restating the rest.
+
+```toml
+# your-site/i18n/en.toml
+[sections]
+other = "Sections"
+
+[piecesTitle]
+other = "Pages"
+```
+
+The defaults read as a personal publishing site, because that is what the
+theme was cut for. A documentation site will want "Sections" where the
+theme says "Topics".
 
 ## Licence
 

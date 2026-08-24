@@ -20,7 +20,7 @@
   </section>
 
   <section class="sec">
-    <header><h2>Pieces</h2><span class="c" id="tagcount">{{ len (where site.RegularPages "Params.tags" "!=" nil) }}</span></header>
+    <header><h2>{{ i18n "piecesTitle" }}</h2><span class="c" id="tagcount">{{ len (where site.RegularPages "Params.tags" "!=" nil) }}</span></header>
     <div class="rows" id="tagged">
       {{- range (sort (where site.RegularPages "Params.tags" "!=" nil) "Date" "desc") }}
       <a class="row" href="{{ .RelPermalink }}" data-tags="{{ delimit .Params.tags " " }}">

@@ -21,7 +21,13 @@
   {{ end }}
 {{ end }}
 {{ $index := resources.FromString "search/index.json" (jsonify $idx) | fingerprint }}
-<main class="piece" data-index="{{ $index.RelPermalink }}">
+<main class="piece" data-index="{{ $index.RelPermalink }}"
+      {{/* the script says these words, so they come from i18n like the rest */}}
+      data-none="{{ i18n "searchNothing" }}"
+      data-loading="{{ i18n "searchLoading" }}"
+      data-failed="{{ i18n "searchFailed" }}"
+      data-one="{{ i18n "pieceCount" 1 }}"
+      data-many="{{ i18n "pieceCount" 999 }}">
   {{ partial "crumb.html" . }}
   <header class="head">
     <h1>{{ .Title }}</h1>
@@ -29,11 +35,11 @@
   </header>
 
   <div class="find">
-    <label for="q">Search</label>
+    <label for="q">{{ i18n "searchLabel" }}</label>
     <input id="q" type="search" autocomplete="off" autofocus
-           placeholder="A word from a title, the text or a tag"
+           placeholder="{{ i18n "searchPlaceholder" }}"
            aria-describedby="tally">
-    <p id="tally" class="tally" role="status">{{ len $idx }} pieces</p>
+    <p id="tally" class="tally" role="status">{{ i18n "pieceCount" (len $idx) }}</p>
   </div>
 
   <div class="rows" id="hits"></div>

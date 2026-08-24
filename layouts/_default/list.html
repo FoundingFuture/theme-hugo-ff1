@@ -10,7 +10,7 @@
 
   {{ with .Sections }}
   <section class="sec">
-    {{ partial "section-head.html" (dict "title" "Subtopics" "count" (printf "%d" (len .))) }}
+    {{ partial "section-head.html" (dict "title" (i18n "subsections") "count" (printf "%d" (len .))) }}
     <div class="cards">
     {{- range . }}
       <a class="card" href="{{ .RelPermalink }}">
@@ -25,7 +25,7 @@
 
   {{ with .RegularPages }}
   <section class="sec">
-    {{ partial "section-head.html" (dict "title" "Pieces" "count" (printf "%d" (len .))) }}
+    {{ partial "section-head.html" (dict "title" (i18n "piecesTitle") "count" (printf "%d" (len .))) }}
     {{ partial "index-rows.html" (dict "pages" (sort . "Date" "desc")) }}
   </section>
   {{ end }}
@@ -35,7 +35,7 @@
   {{ $deeper := complement .RegularPages .RegularPagesRecursive }}
   {{ with $deeper }}
   <section class="sec">
-    {{ partial "section-head.html" (dict "title" "Further down"
+    {{ partial "section-head.html" (dict "title" (i18n "furtherDown")
         "count" (printf "%d" (len .))) }}
     {{ partial "index-rows.html" (dict "pages" (sort . "Date" "desc") "showSection" true) }}
   </section>
