@@ -21,3 +21,7 @@ theme = "foundingfuture-i"
 [[params.extraNav]]
   name = "Search"
   url = "/search/"
+
+[[params.extraNav]]
+  name = "Screenshots"
+  url = "/screenshots/"
