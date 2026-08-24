@@ -1,0 +1,19 @@
+{{/* A dense list of named things, each with a tag and a line.
+
+     {{< items >}}
+     name | tag | what it does
+     name | tag | what it does
+     {{< /items >}}
+*/}}
+<div class="list">
+{{- range (split (trim .Inner "\n") "\n") }}
+  {{- $row := split . "|" }}
+  {{- if ge (len $row) 2 }}
+  <a class="item" href="#">
+    <span class="nm">{{ trim (index $row 0) " " }}</span>
+    <span class="k" data-t="{{ $.Page.Params.colour | default "teal" }}">{{ trim (index $row 1) " " }}</span>
+    {{- if ge (len $row) 3 }}<span class="ds">{{ trim (index $row 2) " " }}</span>{{ end }}
+  </a>
+  {{- end }}
+{{- end }}
+</div>

@@ -1,0 +1,15 @@
+baseURL = "https://example.org/"
+title = "Ordinary Machines"
+locale = "en"
+theme = "foundingfuture-i"
+disableKinds = ["taxonomy", "term", "rss", "sitemap"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  tagline = "Notes on machines that were solved before anyone had a computer"
+  established = "est. 1884"
+  domains = ["example.org"]
+  # Topics take these in order unless a section sets colour itself.
+  palette = ["teal", "indigo", "rose", "amber"]
