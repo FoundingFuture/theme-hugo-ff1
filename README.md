@@ -172,6 +172,28 @@ doing the scrolling. The strip takes focus, so it is reachable by keyboard.
 `/screenshots/` in the example site is the shortcode carrying the pictures
 above.
 
+## Video and audio, without the visit
+
+`embed` puts a YouTube video or a SoundCloud track on the page as a poster
+and a play button, both served from your own domain.
+
+```
+{{< embed at="youtube" id="aqz-KE-bpKQ" title="What it is" >}}
+{{< embed at="soundcloud" id="https://soundcloud.com/user/track" >}}
+```
+
+The poster is fetched once when the site is built and stored beside it, so a
+page carrying a video costs a page's worth of requests. Press play and the
+player loads from `youtube-nocookie.com`, and only then. Measured on the
+example site: no third-party host is contacted until the button is pressed,
+and four are contacted after.
+
+With scripting off the poster is a plain link to the original, which is what
+a reader wants when the player will not run.
+
+Building needs network the first time, to pull the poster. Hugo caches it in
+`resources/`, so later builds do not.
+
 ## The line at the foot
 
 One line, at the foot of the viewport, carrying your site's name, its

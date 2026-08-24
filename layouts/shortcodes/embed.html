@@ -1,0 +1,62 @@
+{{/* A video or a track, without the visit to a third party.
+
+     {{< embed at="youtube" id="aqz-KE-bpKQ" title="What it is" >}}
+     {{< embed at="soundcloud" id="https://soundcloud.com/user/track" >}}
+
+     Named parameters throughout, because Hugo will not mix them with
+     positional ones and a title is worth having.
+
+     What ships is a picture and a play button, both served from this
+     domain. Nothing is fetched from YouTube or SoundCloud until a reader
+     asks for it, so a page carrying a video costs a page's worth of
+     requests, not a megabyte of somebody else's player.
+
+     The poster is pulled once, at build time, and stored beside the site.
+     With no script the button is a plain link to the original, which is
+     what a reader wants anyway when the player will not run.
+*/}}
+{{ $kind := .Get "at" }}
+{{ $ref  := .Get "id" }}
+{{ $title := .Get "title" | default "" }}
+{{ $poster := "" }}{{ $href := "" }}{{ $src := "" }}{{ $label := "" }}
+
+{{- if eq $kind "youtube" }}
+  {{- $href = printf "https://www.youtube.com/watch?v=%s" $ref }}
+  {{- $src = printf "https://www.youtube-nocookie.com/embed/%s?autoplay=1&rel=0" $ref }}
+  {{- $label = "Play on YouTube" }}
+  {{- range (slice "maxresdefault" "hqdefault") }}
+    {{- if not $poster }}
+      {{- $u := printf "https://i.ytimg.com/vi/%s/%s.jpg" $ref . }}
+      {{- with try (resources.GetRemote $u) }}
+        {{- with .Value }}{{ $poster = . }}{{ end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- else if eq $kind "soundcloud" }}
+  {{- $href = $ref }}
+  {{- $src = printf "https://w.soundcloud.com/player/?url=%s&auto_play=true" (urlquery $ref) }}
+  {{- $label = "Play on SoundCloud" }}
+  {{- $o := printf "https://soundcloud.com/oembed?format=json&url=%s" (urlquery $ref) }}
+  {{- with try (resources.GetRemote $o) }}
+    {{- with .Value }}
+      {{- $meta := unmarshal .Content }}
+      {{- if not $title }}{{ $title = index $meta "title" }}{{ end }}
+      {{- with index $meta "thumbnail_url" }}
+        {{- with try (resources.GetRemote .) }}{{ with .Value }}{{ $poster = . }}{{ end }}{{ end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- with $poster }}{{ $poster = .Fill "960x540 top webp q80" }}{{ end }}
+<div class="embed{{ if not $poster }} bare{{ end }}" data-src="{{ $src }}"
+     data-title="{{ $title | default $label }}">
+  <a class="cover" href="{{ $href }}" rel="noopener">
+    {{- with $poster }}
+    <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
+         alt="{{ $title }}" loading="lazy">
+    {{- end }}
+    <span class="play" aria-hidden="true"></span>
+    <span class="say">{{ with $title }}{{ . }}{{ else }}{{ $label }}{{ end }}</span>
+  </a>
+</div>

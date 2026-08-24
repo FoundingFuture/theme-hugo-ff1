@@ -28,6 +28,10 @@
   {{ block "main" . }}{{ end }}
  </div>
 </div>
+{{ if strings.Contains (printf "%s" .Content) "class=\"embed\"" }}
+{{ $js := resources.Get "js/embed.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{ end }}
 {{ if eq .Layout "search" }}
 {{ $js := resources.Get "js/search.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>

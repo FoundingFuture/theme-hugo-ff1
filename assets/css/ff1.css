@@ -676,3 +676,40 @@ h4:hover>.anchor,.anchor:focus{opacity:1;color:var(--teal)}
 .lit .back{left:clamp(.5rem,2vw,2rem);top:50%;transform:translateY(-50%)}
 .lit .on{right:clamp(.5rem,2vw,2rem);top:50%;transform:translateY(-50%)}
 .lit .shut{top:clamp(.5rem,2vw,1.5rem);right:clamp(.5rem,2vw,1.5rem);font-size:1.3rem}
+
+/* ================= a video that has not phoned home yet ================= */
+/* A picture and a button, both from this domain. The player arrives only
+   when somebody asks for it. Without a script the whole thing is a link to
+   the original, which is what a reader wants when the player will not run. */
+.embed{
+  position:relative;margin:1.3rem var(--pad);
+  aspect-ratio:16/9;background:var(--ink);overflow:hidden;
+}
+.embed.playing{background:#000}
+.embed iframe{display:block;width:100%;height:100%;border:0}
+.embed .cover{
+  position:absolute;inset:0;display:grid;place-items:center;
+  text-decoration:none;color:var(--paper);
+}
+.embed .cover img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.72;transition:opacity .2s ease;
+}
+.embed .cover:hover img,.embed .cover:focus-visible img{opacity:.9}
+.embed .play{
+  position:relative;width:4.4rem;height:4.4rem;border-radius:50%;
+  background:color-mix(in oklab,var(--ink) 55%, transparent);
+  border:2px solid var(--paper);transition:background .2s ease;
+}
+.embed .play::after{
+  content:"";position:absolute;top:50%;left:56%;translate:-50% -50%;
+  border-left:1.15rem solid var(--paper);
+  border-block:.72rem solid transparent;
+}
+.embed .cover:hover .play,.embed .cover:focus-visible .play{background:var(--teal)}
+.embed .say{
+  position:absolute;left:0;right:0;bottom:0;padding:.6rem var(--pad);
+  background:linear-gradient(to top,color-mix(in oklab,var(--ink) 85%, transparent),transparent);
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;
+}
+.embed.bare .cover{background:var(--ink)}
