@@ -2,18 +2,24 @@
 
      {{< items >}}
      name | tag | what it does
-     name | tag | what it does
+     name | tag | what it does | /where/it/lives/
      {{< /items >}}
+
+     A row with a fourth field is a link. A row without one is not, because
+     a row that looks clickable and goes nowhere is worse than a row that
+     never offered.
 */}}
 <div class="list">
 {{- range (split (trim .Inner "\n") "\n") }}
   {{- $row := split . "|" }}
   {{- if ge (len $row) 2 }}
-  <a class="item" href="#">
+  {{- $url := "" }}{{ if ge (len $row) 4 }}{{ $url = trim (index $row 3) " " }}{{ end }}
+  {{- $tag := "" }}{{ with $.Page.Params.colour }}{{ $tag = . }}{{ else }}{{ $tag = "teal" }}{{ end }}
+  {{- if $url }}<a class="item" href="{{ partial "href.html" $url }}">{{ else }}<div class="item">{{ end }}
     <span class="nm">{{ trim (index $row 0) " " }}</span>
-    <span class="k" data-t="{{ $.Page.Params.colour | default "teal" }}">{{ trim (index $row 1) " " }}</span>
+    <span class="k" data-t="{{ $tag }}">{{ trim (index $row 1) " " }}</span>
     {{- if ge (len $row) 3 }}<span class="ds">{{ trim (index $row 2) " " }}</span>{{ end }}
-  </a>
+  {{- if $url }}</a>{{ else }}</div>{{ end }}
   {{- end }}
 {{- end }}
 </div>
