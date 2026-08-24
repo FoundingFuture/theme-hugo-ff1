@@ -1,8 +1,8 @@
 ---
-title: Ordinary Machines
+title: FoundingFuture I
 ---
 
-{{< lead >}}A machine that has stopped being interesting is one that works.{{< /lead >}}
+{{< lead >}}Everything below is example content, to show the theme carrying a real tree.{{< /lead >}}
 
 {{< columns >}}
 The escapement is the part of a clock that everyone looks at and nobody

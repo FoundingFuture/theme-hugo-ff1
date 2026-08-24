@@ -1,5 +1,5 @@
 baseURL = "https://example.org/"
-title = "Ordinary Machines"
+title = "FoundingFuture I"
 locale = "en"
 theme = "foundingfuture-i"
 disableKinds = ["taxonomy", "term", "rss", "sitemap"]
@@ -8,8 +8,8 @@ disableKinds = ["taxonomy", "term", "rss", "sitemap"]
   unsafe = true
 
 [params]
-  tagline = "Notes on machines that were solved before anyone had a computer"
-  established = "est. 1884"
+  tagline = "A Hugo theme for topics of any depth, and a lot of text on one screen"
+  established = "a hugo theme"
   domains = ["example.org"]
   # Topics take these in order unless a section sets colour itself.
   palette = ["teal", "indigo", "rose", "amber"]
