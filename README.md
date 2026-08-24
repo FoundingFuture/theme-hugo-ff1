@@ -1,12 +1,45 @@
 # FoundingFuture I
 
-A Hugo theme for a site with a lot to say and one screen to say it on.
+Every theme looks good with three posts in it. This one is built for what
+happens next.
 
-Topics nest as deep as the content directory does, and the menu follows
-without a line of configuration. Each topic carries a colour that means the
-same thing wherever it appears. Rows that open are set in small capitals, so
-the lettering says which way is deeper. Two small scripts run, both of them
-for finding things, and the pages work without either.
+Your folders become the menu, however deep they go, with nothing to
+configure. Each topic carries a colour that means the same thing on every
+page. Menu items in small capitals have more inside; plain ones are pages.
+Two small scripts run, both for finding things, and every page works without
+them.
+
+**[See it running](https://foundingfuture.com/template/)**
+
+<p align="center">
+  <img src="exampleSite/static/img/shots/front.png"
+       alt="The front page, with two topics open in the menu" width="820">
+</p>
+
+<table>
+<tr>
+<td width="50%"><img src="exampleSite/static/img/shots/depth.png"
+    alt="A topic three levels down with the tree open"><br>
+    Three levels down. The menu is the content tree.</td>
+<td width="50%"><img src="exampleSite/static/img/shots/piece.png"
+    alt="A piece showing contents, pager and related pages"><br>
+    One piece: contents, linked headings, previous and next.</td>
+</tr>
+<tr>
+<td><img src="exampleSite/static/img/shots/search.png"
+    alt="The search page part way through a query"><br>
+    Search, mid-query. The index compiles into the build.</td>
+<td><img src="exampleSite/static/img/shots/tags.png"
+    alt="The tag page after one tag was clicked"><br>
+    Tags after one click. Dead ends have gone.</td>
+</tr>
+</table>
+
+<p align="center">
+  <img src="exampleSite/static/img/shots/narrow.png"
+       alt="The same site at 430 pixels wide, menu folded into a bar" width="320"><br>
+  <em>At 430 pixels the rail folds into a bar.</em>
+</p>
 
 ## Dropping it into a site you already have
 
@@ -115,6 +148,29 @@ reader on a topic page sees the whole topic, not just its top layer.
 
 Sitemaps and feeds are Hugo's, and the theme leaves them switched on. If
 your config lists `sitemap` or `rss` in `disableKinds`, they are not built.
+
+## Pictures
+
+`gallery` puts a row of pictures on the page. It snaps as it scrolls.
+
+```
+{{< gallery label="What it looks like" >}}
+/img/shots/front.png | The front page
+/img/shots/depth.png | Three levels down
+{{< /gallery >}}
+```
+
+One picture per line, the path first and the caption after a pipe. The
+caption doubles as the alt text. Paths run through the theme's url helper,
+so they survive a site served under a subpath.
+
+It is a grid with `scroll-snap` on it. No script, no timer, and no slide
+moving while somebody is still looking at it. A wheel, a trackpad, a touch
+and the arrow keys all work the way they already do, because the browser is
+doing the scrolling. The strip takes focus, so it is reachable by keyboard.
+
+`/screenshots/` in the example site is the shortcode carrying the pictures
+above.
 
 ## The line at the foot
 
