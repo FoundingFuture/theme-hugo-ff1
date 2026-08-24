@@ -617,3 +617,12 @@ h4:hover>.anchor,.anchor:focus{opacity:1;color:var(--teal)}
   margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
   color:var(--muted);white-space:nowrap;
 }
+
+/* ================= a picture inside a piece ================= */
+/* The theme had no rule for one, so anything wider than the column ran
+   straight out of it. An image takes the measure it is given and keeps
+   its own ratio. */
+/* Only img. Markdown emits one; it emits no figure, and this theme ships no
+   shortcode that does either. A site that wants figures styles them itself,
+   and the rules come back here the day the theme grows a shortcode. */
+.body-copy img,.read img{display:block;max-width:100%;height:auto}
