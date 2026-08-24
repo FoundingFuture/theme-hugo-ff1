@@ -396,7 +396,7 @@ footer.foot .sp{margin-left:auto}
    These are drawn at their size, so the whole label holds one weight. */
 @font-face{
   font-family:'SmallCaps';
-  src:url('../fonts/source-sans-3-smallcaps.woff2') format('woff2');
+  src:url('../fonts/bricolage-smallcaps.woff2') format('woff2');
   font-weight:400;font-display:swap;
 }
 
