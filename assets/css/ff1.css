@@ -24,6 +24,8 @@
   --pad:1.25rem;   /* content's inset from the edges of its column */
 }
 *,*::before,*::after{box-sizing:border-box}
+/* our own display would otherwise beat the UA sheet's rule for it */
+[hidden]{display:none !important}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--paper);color:var(--body);
@@ -525,3 +527,30 @@ ol.pf li em{font-style:normal;color:var(--ink)}
   text-transform:uppercase;color:var(--muted);line-height:1.7;
 }
 .zt{border-right:none;border-bottom:1px solid var(--line)}
+
+/* ================= narrowing by tag ================= */
+.facets{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+  padding:.9rem var(--pad) 1rem;background:var(--surface);
+}
+.facet{
+  display:inline-flex;align-items:baseline;gap:.45rem;
+  padding:.3rem .6rem;border:1px solid var(--line);border-radius:999px;
+  background:var(--surface);color:var(--body);text-decoration:none;
+  font-size:.92rem;cursor:pointer;
+  transition:background .16s ease,border-color .16s ease,color .16s ease;
+}
+.facet:hover{border-color:var(--teal);color:var(--ink)}
+.facet .n{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+/* picked, so it reads as a filter that is on rather than a link */
+.facet.on{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.facet.on .n{color:var(--surface);opacity:.7}
+.facet.clear{
+  font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);border-style:dashed;
+}
+.facet.clear:hover{color:var(--ink);border-color:var(--muted)}
+.nomatch{
+  margin:0;padding:.9rem var(--pad) 1.2rem;background:var(--surface);
+  color:var(--muted);font-size:.94rem;
+}

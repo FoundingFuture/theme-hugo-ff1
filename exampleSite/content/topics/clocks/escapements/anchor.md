@@ -2,6 +2,7 @@
 title: The anchor escapement
 date: 2026-08-21
 description: Simple, forgiving, and it interferes with the pendulum the whole time.
+tags: [friction, geometry, failure]
 ---
 
 The anchor is the one most people picture. Two pallets on a rocking arm, a

@@ -2,6 +2,7 @@
 title: The deadbeat escapement
 date: 2026-08-18
 description: Graham's answer, and the reason regulator clocks kept time.
+tags: [friction, precision, geometry]
 ---
 
 Graham's version shapes the pallet faces so that one part of the surface is

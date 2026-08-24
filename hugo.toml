@@ -1,0 +1,15 @@
+# Defaults a site inherits by installing this theme. A site's own config
+# wins over anything here.
+#
+# disableKinds is the one thing this cannot do for you. If a site lists
+# "taxonomy" or "term" there, the tag pages never render and nothing says
+# so. See the README.
+
+[taxonomies]
+  tag = "tags"
+
+# There is no JSON index. The tag page renders every piece with its tags on
+# it, and the narrowing reads those, so nothing is fetched and nothing can
+# fall out of step with the page. A site with thousands of pieces would want
+# a separate index instead, and would have to declare the output itself,
+# because Hugo does not take [outputs] from a theme.

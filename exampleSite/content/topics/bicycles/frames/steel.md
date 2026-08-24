@@ -2,6 +2,7 @@
 title: Why steel lasted
 date: 2026-08-09
 description: It bends before it breaks, and it can be mended by anyone.
+tags: [materials, failure, manufacturing]
 ---
 
 Steel's virtue is not strength. It is that steel warns you. A frame that has

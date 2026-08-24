@@ -2,6 +2,7 @@
 title: Compensating for temperature
 date: 2026-08-14
 description: Steel grows in summer, and a clock that ignores it loses a minute a month.
+tags: [materials, temperature, precision, measurement]
 ---
 
 A steel rod a metre long grows about a tenth of a millimetre for every ten

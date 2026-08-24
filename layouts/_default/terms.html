@@ -1,0 +1,36 @@
+{{ define "main" }}
+<main class="piece" id="facetpage">
+  {{ partial "crumb.html" . }}
+  <header class="head">
+    <h1>{{ .Title }}</h1>
+    <p class="deck">{{ with .Description }}{{ . }}{{ else }}Pick a tag, then another. Tags that cannot go with what you have picked drop away.{{ end }}</p>
+  </header>
+
+  <section class="sec">
+    {{ partial "section-head.html" (dict "title" "Tags"
+        "count" (printf "%d" (len .Data.Terms))) }}
+    <div class="facets" id="facets">
+      {{- range .Data.Terms.Alphabetical }}
+      <a class="facet" href="{{ .Page.RelPermalink }}" data-tag="{{ .Name }}">
+        <span class="fn">{{ .Page.Title }}</span><span class="n">{{ .Count }}</span>
+      </a>
+      {{- end }}
+      <button class="facet clear" id="facetclear" type="button" hidden>clear</button>
+    </div>
+  </section>
+
+  <section class="sec">
+    <header><h2>Pieces</h2><span class="c" id="tagcount">{{ len (where site.RegularPages "Params.tags" "!=" nil) }}</span></header>
+    <div class="rows" id="tagged">
+      {{- range (sort (where site.RegularPages "Params.tags" "!=" nil) "Date" "desc") }}
+      <a class="row" href="{{ .RelPermalink }}" data-tags="{{ delimit .Params.tags " " }}">
+        <span class="d">{{ .Date.Format "01.02" }}</span>
+        <span class="t">{{ .Title }}</span>
+      </a>
+      {{- end }}
+    </div>
+    <p class="nomatch" id="nomatch" hidden>Nothing carries all of those together. Drop one.</p>
+  </section>
+</main>
+{{ partial "footer.html" . }}
+{{ end }}

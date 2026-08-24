@@ -1,0 +1,16 @@
+{{ define "main" }}
+<main class="piece">
+  {{ partial "crumb.html" . }}
+  <header class="head">
+    <h1>{{ .Title }}</h1>
+    <p class="deck">{{ len .Pages }} piece{{ if ne (len .Pages) 1 }}s{{ end }} tagged {{ .Title }}.</p>
+  </header>
+  <section class="sec">
+    {{ partial "section-head.html" (dict "title" "Tagged"
+        "count" (printf "%d" (len .Pages))
+        "more" (dict "url" (printf "%s/" (path.Dir .RelPermalink)) "label" "all tags")) }}
+    {{ partial "index-rows.html" (dict "pages" (sort .Pages "Date" "desc")) }}
+  </section>
+</main>
+{{ partial "footer.html" . }}
+{{ end }}

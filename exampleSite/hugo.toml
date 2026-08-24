@@ -2,7 +2,7 @@ baseURL = "https://example.org/"
 title = "FoundingFuture I"
 locale = "en"
 theme = "foundingfuture-i"
-disableKinds = ["taxonomy", "term", "rss", "sitemap"]
+disableKinds = ["rss", "sitemap"]
 
 [markup.goldmark.renderer]
   unsafe = true
@@ -13,3 +13,8 @@ disableKinds = ["taxonomy", "term", "rss", "sitemap"]
   domains = ["example.org"]
   # Topics take these in order unless a section sets colour itself.
   palette = ["teal", "indigo", "rose", "amber"]
+
+# Anything that is not a topic. The rail lists these after the tree.
+[[params.extraNav]]
+  name = "Tags"
+  url = "/tags/"

@@ -13,6 +13,30 @@ the lettering says which way is deeper. Nothing here runs a script.
 - Sections under `content/topics/`, at any depth
 - `params.tagline` for the line beside the wordmark
 
+## Tags
+
+Tag a piece in its front matter and the theme does the rest.
+
+```yaml
+tags: [materials, precision, temperature]
+```
+
+`/tags/` lists every tag. Pick one and the pieces narrow; pick another and
+they narrow again. A tag that appears in none of what is left drops away,
+which is what makes the next click obvious. The selection is in the URL, so
+a narrowed view can be sent to someone.
+
+Every tag is also a real page at `/tags/<tag>/`, and that is what a browser
+without JavaScript follows. The narrowing is the only script in the theme.
+
+**One thing will stop it working silently.** If your site's config lists
+`taxonomy` or `term` in `disableKinds`, the tag pages are never built and
+nothing reports it. Remove them:
+
+```toml
+disableKinds = ["rss", "sitemap"]   # not "taxonomy", not "term"
+```
+
 ## Making it yours
 
 The theme ships a plain wordmark. Put your own at
