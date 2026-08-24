@@ -37,12 +37,15 @@ from a web page.
       Copyright 2024 The Asimovian Project Authors
       https://github.com/carolinashort/asimovian
 
-  source-sans-3-smallcaps.woff2
-      Source Sans 3, the menu face, for its real small capitals.
-      © 2023 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'
-
-      UNRESOLVED. This is the only face here with a Reserved Font Name.
-      The copy shipped maps 98 characters where the family has thousands,
-      so it is a subset, and the OFL does not let a modified version keep
-      a reserved name. Either it is renamed, or the unmodified upstream
-      font is shipped instead. Renaming changes no glyph.
+  roboto-condensed-caps.woff2
+      Roboto Condensed, the menu face. Condensed because a topic name can
+      be long and the rail is narrow. Its small capitals are drawn, not
+      scaled, so a label holds one stroke weight throughout. The weight 400
+      instance, subset to Latin with the small-capital glyphs kept. Built
+      by scripts/build-menucaps.py.
+      Copyright 2011 The Roboto Project Authors
+      https://github.com/googlefonts/roboto-classic
+      Roboto Condensed reserves no font name, so this cut keeps the family
+      name and records what was done to it. The font binary upstream still
+      carries an older Apache 2.0 string in its name table; the licence
+      that ships with it, and the one it is distributed under, is the OFL.

@@ -89,6 +89,9 @@ a{color:inherit}
 .rail{
   border-right:1px solid var(--line);
   flex:1 1 auto;min-height:0;overflow-y:auto;padding:1.1rem 0 2rem;
+  /* The counts beside a row stay monospaced. Their own rules say so, and
+     they are more specific than this. */
+  font-family:'Menu',var(--text);
 }
 .rail h2{
   font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;
@@ -408,12 +411,14 @@ footer.foot .sp{margin-left:auto}
 }
 
 /* ================= deep topic tree ================= */
-/* Instrument Sans has no small-cap glyphs, so the browser scaled capitals
-   instead and the shrunken letters came out lighter than the full ones.
-   These are drawn at their size, so the whole label holds one weight. */
+/* The whole menu is set in this. Condensed, because a topic name can be
+   long and the rail is narrow, and it carries small capitals a designer
+   drew rather than capitals a browser shrank. Shrunken capitals keep the
+   stroke weight of full ones, which is what made the first menu look
+   uneven. Cut by scripts/build-menucaps.py. */
 @font-face{
-  font-family:'SmallCaps';
-  src:url('../fonts/source-sans-3-smallcaps.woff2') format('woff2');
+  font-family:'Menu';
+  src:url('../fonts/roboto-condensed-caps.woff2') format('woff2');
   font-weight:400;font-display:swap;
 }
 /* Cut from the display face for titles. Its lowercase glyphs are already
@@ -453,10 +458,10 @@ footer.foot .sp{margin-left:auto}
 .topics details.sub ul li:first-child{margin-top:.26rem}
 .topics details.sub ul li:last-child{margin-bottom:.26rem}
 
-/* ---- anything that opens is set in small caps. Flat rows stay as they
-       are, so the typography says which rows go deeper ---- */
+/* ---- anything that opens is set in small caps, and so is the row that
+       leads to the topic's own page. Every other row is the same face
+       without them, so the lettering still says which rows go deeper ---- */
 .topics summary .nm{
-  font-family:'SmallCaps',var(--text);
   font-variant-caps:small-caps;letter-spacing:.03em;font-weight:400;
 }
 .topics details:not(.sub)>summary .nm{font-size:1.06rem}
@@ -464,7 +469,6 @@ footer.foot .sp{margin-left:auto}
 
 /* the main page row names the topic, so it takes the topic's lettering */
  .topics .all a{
-  font-family:'SmallCaps',var(--text);
   font-variant-caps:small-caps;letter-spacing:.03em;
 }
 
