@@ -102,11 +102,11 @@ a{color:inherit}
 .rail ul{list-style:none;margin:0 0 .25rem;padding:0}
 .rail li a{
   display:flex;align-items:baseline;gap:.5rem;
-  padding:.28rem 1.1rem;text-decoration:none;font-size:.92rem;color:var(--body);
+  padding:.28rem 1.1rem;text-decoration:none;font-size:1rem;color:var(--body);
 }
 .rail li a:hover{background:var(--sunk);color:var(--ink)}
 .rail li a .n{margin-left:auto;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
-.rail li ul a{padding-left:2rem;font-size:.86rem;color:var(--muted)}
+.rail li ul a{padding-left:2rem;font-size:.94rem;color:var(--muted)}
 
 /* ---- section headers: a rule with a label sitting in it ---- */
 .sec{border-bottom:1px solid var(--line)}
@@ -300,7 +300,7 @@ footer.foot .sp{margin-left:auto}
 
 .topics summary{
   display:flex;align-items:center;gap:.5rem;cursor:pointer;list-style:none;
-  padding:.36rem .5rem;border-radius:var(--r);font-size:.95rem;color:var(--body);
+  padding:.36rem .5rem;border-radius:var(--r);font-size:1.03rem;color:var(--body);
   transition:background .18s ease,color .18s ease;
 }
 .topics summary::-webkit-details-marker{display:none}
@@ -308,7 +308,7 @@ footer.foot .sp{margin-left:auto}
 /* About is not a topic. Same pill, no colour, no count, no chevron. */
 .topics .plain a{
   display:flex;align-items:center;padding:.36rem .5rem;border-radius:var(--r);
-  font-size:.95rem;color:var(--body);text-decoration:none;
+  font-size:1.03rem;color:var(--body);text-decoration:none;
   transition:background .18s ease,color .18s ease;
 }
 .topics .plain a:hover{background:color-mix(in oklab,var(--ink) 8%, transparent);color:var(--ink)}
@@ -342,7 +342,7 @@ footer.foot .sp{margin-left:auto}
 .topics details ul li:last-child{margin-bottom:.32rem}
 .topics details ul a{
   display:flex;align-items:baseline;gap:.5rem;padding:.3rem .5rem;
-  border-radius:6px;text-decoration:none;font-size:.9rem;color:var(--body);
+  border-radius:6px;text-decoration:none;font-size:.98rem;color:var(--body);
   background:transparent;
   transition:background .18s ease,color .18s ease;
 }
@@ -431,7 +431,7 @@ footer.foot .sp{margin-left:auto}
 
 /* ---- level two that opens further: a row, never a filled pill ---- */
 .topics details.sub>summary{
-  padding:.3rem .5rem;border-radius:6px;font-size:.9rem;
+  padding:.3rem .5rem;border-radius:6px;font-size:.98rem;
   color:var(--body);background:transparent;
 }
 .topics details.sub>summary:hover{background:color-mix(in oklab,var(--tc) calc(22% + var(--p) * 12%), var(--surface));color:var(--ink)}
@@ -453,7 +453,7 @@ footer.foot .sp{margin-left:auto}
   background:color-mix(in oklab,var(--tc) calc(10% + var(--p) * 12%), var(--surface));
 }
 .topics details.sub>ul{border-radius:8px;margin:0 0 .1rem .3rem;padding:0 .3rem}
-.topics details.sub ul a{font-size:.86rem;padding:.26rem .45rem}
+.topics details.sub ul a{font-size:.94rem;padding:.26rem .45rem}
 .topics details ul a:hover{background:color-mix(in oklab,var(--tc) calc(22% + var(--p) * 12%), var(--surface));color:var(--ink)}
 .topics details.sub ul li:first-child{margin-top:.26rem}
 .topics details.sub ul li:last-child{margin-bottom:.26rem}
@@ -464,8 +464,8 @@ footer.foot .sp{margin-left:auto}
 .topics summary .nm{
   font-variant-caps:small-caps;letter-spacing:.03em;font-weight:400;
 }
-.topics details:not(.sub)>summary .nm{font-size:1.06rem}
-.topics details.sub>summary .nm{font-size:1rem}
+.topics details:not(.sub)>summary .nm{font-size:1.15rem}
+.topics details.sub>summary .nm{font-size:1.09rem}
 
 /* the main page row names the topic, so it takes the topic's lettering */
  .topics .all a{
@@ -477,7 +477,7 @@ footer.foot .sp{margin-left:auto}
 .topics details.container>summary .chev{margin-left:auto}
 .topics details.container[open]>summary{background:transparent;font-weight:400}
 .topics details.container[open]>summary .nm{color:var(--ink)}
-.topics details.container>summary{font-size:.9rem}
+.topics details.container>summary{font-size:.98rem}
 
 
 /* ================= a page: its trail, its head, its text =========== */
