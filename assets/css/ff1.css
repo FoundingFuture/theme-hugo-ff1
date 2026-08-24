@@ -305,14 +305,22 @@ footer.foot .sp{margin-left:auto}
 }
 .topics summary::-webkit-details-marker{display:none}
 
-/* About is not a topic. Same pill, no colour, no count, no chevron. */
-.topics .plain a{
+/* A top-level row that does not open. Two things land here: a topic with
+   nothing beneath it, and a row that is not a topic at all, like About.
+   Same pill as a summary, no colour, no count, no chevron.
+
+   The child combinator is what keeps it to the top level, because the
+   lists further down carry no class of their own. Without this rule such
+   a row matches only .rail li a and takes that rule's wider inset and its
+   square hover, which is how Printing came to sit further right than
+   everything above it. */
+.topics>li>a{
   display:flex;align-items:center;padding:.36rem .5rem;border-radius:var(--r);
   font-size:1.03rem;color:var(--body);text-decoration:none;
   transition:background .18s ease,color .18s ease;
 }
-.topics .plain a:hover{background:color-mix(in oklab,var(--ink) 8%, transparent);color:var(--ink)}
-.topics .plain a[aria-current]{
+.topics>li>a:hover{background:color-mix(in oklab,var(--ink) 8%, transparent);color:var(--ink)}
+.topics>li>a[aria-current]{
   background:color-mix(in oklab,var(--ink) 13%, transparent);
   color:var(--ink);font-weight:500;
 }

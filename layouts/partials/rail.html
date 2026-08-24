@@ -20,7 +20,7 @@
   <ul class="topics">
   {{- range . }}
     {{- $url := partial "href.html" .url }}
-    <li class="plain"><a href="{{ $url }}"{{ if eq $.RelPermalink $url }} aria-current="page"{{ end }}>{{ .name }}</a></li>
+    <li><a href="{{ $url }}"{{ if eq $.RelPermalink $url }} aria-current="page"{{ end }}>{{ .name }}</a></li>
   {{- end }}
   </ul>
 {{- end }}
