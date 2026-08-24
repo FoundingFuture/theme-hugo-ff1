@@ -1,26 +1,62 @@
-{{/* A row of pictures that snaps as it scrolls.
+{{/* Thumbnails that open full size when clicked.
 
      {{< gallery >}}
-     /img/shots/front.png | The front page
-     /img/shots/depth.png | Three levels down
+     front.png | The front page
+     depth.png | Three levels down
      {{< /gallery >}}
 
-     Not a carousel. No script, no timer, and no slide moving while you are
-     still looking at it. The browser's own scrolling does the work, so a
-     wheel, a trackpad, a touch and the arrow keys all behave the way they
-     already do everywhere else.
+     One picture per line: the file first, the caption after a pipe. Files
+     are page resources, so put them in the page's own folder beside its
+     index.md. Hugo cuts the thumbnails.
+
+     No script. The full-size view is a :target, so clicking a thumbnail
+     changes the fragment and CSS does the rest. Back closes it, and the
+     link to any picture can be sent to somebody.
 */}}
-<div class="gallery" tabindex="0" role="group"
-     aria-label="{{ .Get "label" | default "Pictures" }}">
+{{ $id := printf "g%d" .Ordinal }}
+{{ $rows := slice }}
 {{- range (split (trim .Inner "\n") "\n") }}
-  {{- $row := split . "|" }}
-  {{- $src := trim (index $row 0) " " }}
-  {{- $cap := "" }}{{ if ge (len $row) 2 }}{{ $cap = trim (index $row 1) " " }}{{ end }}
-  {{- with $src }}
-  <figure>
-    <img src="{{ partial "href.html" . }}" alt="{{ $cap }}" loading="lazy">
-    {{- with $cap }}<figcaption>{{ . }}</figcaption>{{ end }}
-  </figure>
+  {{- $cut := split . "|" }}
+  {{- $src := trim (index $cut 0) " " }}
+  {{- $cap := "" }}{{ if ge (len $cut) 2 }}{{ $cap = trim (index $cut 1) " " }}{{ end }}
+  {{- with $src }}{{ $rows = $rows | append (dict "src" . "cap" $cap) }}{{ end }}
+{{- end }}
+{{ $n := len $rows }}
+<div class="shots" id="{{ $id }}">
+{{- range $i, $r := $rows }}
+  {{- $res := $.Page.Resources.GetMatch $r.src }}
+  {{- with $res }}
+  {{- /* Fill, not Fit: one tall picture among wide ones makes a ragged
+         grid three rows deep. Anchored top, because the top of a screen
+         is the part that says which screen it is. */}}
+  {{- $thumb := .Fill "560x380 top webp q82" }}
+  <a class="shot" href="#{{ $id }}-{{ $i }}">
+    <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}"
+         alt="{{ $r.cap }}" loading="lazy">
+    <span>{{ $r.cap }}</span>
+  </a>
   {{- end }}
 {{- end }}
 </div>
+
+{{- range $i, $r := $rows }}
+{{- $res := $.Page.Resources.GetMatch $r.src }}
+{{- with $res }}
+{{- $full := .Fit "1600x1600 webp q86" }}
+{{- $prev := printf "#%s-%d" $id (cond (eq $i 0) (sub $n 1) (sub $i 1)) }}
+{{- $next := printf "#%s-%d" $id (cond (eq $i (sub $n 1)) 0 (add $i 1)) }}
+<div class="lit" id="{{ $id }}-{{ $i }}" role="dialog" aria-label="{{ $r.cap }}">
+  <a class="shade" href="#{{ $id }}" aria-label="Close"></a>
+  <figure>
+    <img src="{{ $full.RelPermalink }}" width="{{ $full.Width }}" height="{{ $full.Height }}"
+         alt="{{ $r.cap }}">
+    <figcaption>{{ $r.cap }}<span>{{ add $i 1 }} of {{ $n }}</span></figcaption>
+  </figure>
+  {{- if gt $n 1 }}
+  <a class="step back" href="{{ $prev }}" aria-label="Previous">&#8249;</a>
+  <a class="step on" href="{{ $next }}" aria-label="Next">&#8250;</a>
+  {{- end }}
+  <a class="shut" href="#{{ $id }}" aria-label="Close">&times;</a>
+</div>
+{{- end }}
+{{- end }}

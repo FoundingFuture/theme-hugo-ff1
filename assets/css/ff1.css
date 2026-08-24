@@ -626,24 +626,53 @@ h4:hover>.anchor,.anchor:focus{opacity:1;color:var(--teal)}
    shortcode that does either. A site that wants figures styles them itself,
    and the rules come back here the day the theme grows a shortcode. */
 .body-copy img,.read img{display:block;max-width:100%;height:auto}
+/* ============ thumbnails, and one of them full size ============ */
+/* No script anywhere here. A thumbnail is a link to a fragment, and the
+   full-size view is that fragment's :target. Back closes it, and a link to
+   any one picture can be sent to somebody. */
+.shots{
+  display:grid;gap:1rem;padding:1rem var(--pad);
+  grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));
+}
+.shot{
+  display:block;text-decoration:none;color:var(--body);
+  background:var(--surface);border:1px solid var(--line);
+  transition:border-color .18s ease,color .18s ease;
+}
+.shot img{display:block;width:100%;height:auto}
+.shot span{
+  display:block;padding:.5rem .6rem;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;
+}
+.shot:hover,.shot:focus-visible{border-color:var(--teal);color:var(--ink)}
+.shot:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 
-/* ================= a row of pictures ================= */
-/* Scroll-snap, not a carousel. Nothing moves unless the reader moves it,
-   and the whole thing is one grid and an overflow. */
-.gallery{
-  display:grid;grid-auto-flow:column;
-  grid-auto-columns:minmax(min(26rem,82%),1fr);
-  gap:1rem;padding:1rem var(--pad);
-  overflow-x:auto;overscroll-behavior-x:contain;
-  scroll-snap-type:x mandatory;background:var(--sunk);
+.lit{display:none}
+.lit:target{
+  display:grid;position:fixed;inset:0;z-index:50;
+  place-items:center;padding:clamp(1rem,4vw,3rem);
 }
-.gallery:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
-.gallery figure{margin:0;min-width:0;scroll-snap-align:start}
-.gallery img{
-  display:block;width:100%;height:auto;
-  border:1px solid var(--line);background:var(--surface);
+.lit .shade{
+  position:absolute;inset:0;
+  background:color-mix(in oklab,var(--ink) 88%, transparent);
 }
-.gallery figcaption{
-  margin-top:.5rem;font-family:var(--mono);font-size:.72rem;
-  letter-spacing:.06em;color:var(--muted);
+.lit figure{position:relative;margin:0;max-width:min(96vw,1400px)}
+.lit img{
+  display:block;max-width:100%;max-height:78vh;width:auto;height:auto;
+  background:var(--surface);
 }
+.lit figcaption{
+  display:flex;justify-content:space-between;gap:1rem;margin-top:.6rem;
+  font-family:var(--mono);font-size:.75rem;color:var(--paper);
+}
+.lit figcaption span{opacity:.6}
+.lit .step,.lit .shut{
+  position:absolute;z-index:1;display:grid;place-items:center;
+  width:2.6rem;height:2.6rem;border-radius:50%;
+  background:color-mix(in oklab,var(--paper) 14%, transparent);
+  color:var(--paper);text-decoration:none;font-size:1.5rem;line-height:1;
+}
+.lit .step:hover,.lit .shut:hover{background:var(--teal)}
+.lit .back{left:clamp(.5rem,2vw,2rem);top:50%;transform:translateY(-50%)}
+.lit .on{right:clamp(.5rem,2vw,2rem);top:50%;transform:translateY(-50%)}
+.lit .shut{top:clamp(.5rem,2vw,1.5rem);right:clamp(.5rem,2vw,1.5rem);font-size:1.3rem}
