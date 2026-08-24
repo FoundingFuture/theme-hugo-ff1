@@ -5,9 +5,29 @@
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="deck">{{ . }}</p>{{ end }}
   </header>
-  {{ .Content }}
+  {{ partial "toc.html" . }}
+
+  {{ with .Content }}<div class="body-copy">{{ . }}</div>{{ end }}
   {{ with .Params.sources }}
   <div class="cites">{{ delimit . " &middot; " }}</div>
+  {{ end }}
+
+  {{/* Reading straight through a topic, rather than going back each time. */}}
+  {{ if or .PrevInSection .NextInSection }}
+  <nav class="pager">
+    {{ with .PrevInSection }}<a class="prev" href="{{ .RelPermalink }}"><span>Previous</span>{{ .Title }}</a>{{ end }}
+    {{ with .NextInSection }}<a class="next" href="{{ .RelPermalink }}"><span>Next</span>{{ .Title }}</a>{{ end }}
+  </nav>
+  {{ end }}
+
+  {{/* What sits near this piece, by the tags it shares. The thing a reader
+       did not know to look for. */}}
+  {{ $related := first 4 (site.RegularPages.Related .) }}
+  {{ with $related }}
+  <section class="sec">
+    {{ partial "section-head.html" (dict "title" "Near this") }}
+    {{ partial "index-rows.html" (dict "pages" . "showSection" true) }}
+  </section>
   {{ end }}
 </main>
 {{ partial "footer.html" . }}

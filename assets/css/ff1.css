@@ -129,6 +129,8 @@ a{color:inherit}
 .row:hover{background:var(--sunk)}
 .row .d{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
 .row .t{color:var(--ink);font-size:.95rem;line-height:1.35;min-width:0}
+/* which subtopic a gathered piece came from */
+.row .t em{font-style:normal;color:var(--muted);margin-left:.5rem}
 .k{
   font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;
   padding:.1rem .35rem;border:1px solid currentColor;border-radius:2px;white-space:nowrap;
@@ -546,4 +548,72 @@ footer.foot .sp{margin-left:auto}
 .nomatch{
   margin:0;padding:.9rem var(--pad) 1.2rem;background:var(--surface);
   color:var(--muted);font-size:.94rem;
+}
+
+/* ================= a heading you can link to ================= */
+.anchor{
+  margin-left:.4rem;color:var(--line);text-decoration:none;
+  font-weight:400;opacity:0;transition:opacity .15s ease;
+}
+h1:hover>.anchor,h2:hover>.anchor,h3:hover>.anchor,
+h4:hover>.anchor,.anchor:focus{opacity:1;color:var(--teal)}
+
+/* ================= what is on this page ================= */
+.toc{margin:0;border-bottom:1px solid var(--line);background:var(--surface)}
+.toc>summary{
+  display:flex;align-items:center;gap:.5rem;cursor:pointer;list-style:none;
+  padding:.6rem var(--pad);font-family:var(--mono);font-size:.72rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary:hover{color:var(--ink)}
+.toc>summary .n{margin-left:auto;font-family:var(--mono);font-size:.72rem}
+.toc>summary .chev{
+  flex:0 0 auto;width:.4rem;height:.4rem;margin-right:.1rem;
+  border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:rotate(45deg);transition:transform .3s ease;
+}
+.toc[open]>summary .chev{transform:rotate(-135deg)}
+.toc nav ul{list-style:none;margin:0;padding:0 var(--pad) .9rem 2rem}
+.toc nav ul ul{padding:0 0 0 1.1rem}
+.toc nav li{margin:.15rem 0}
+.toc nav a{color:var(--body);text-decoration:none;font-size:.92rem}
+.toc nav a:hover{color:var(--teal)}
+
+/* ================= the piece before and the piece after ================= */
+.pager{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--line);background:var(--surface);
+}
+.pager a{
+  padding:.8rem var(--pad);text-decoration:none;color:var(--ink);
+  font-size:.95rem;line-height:1.35;
+}
+.pager a:hover{background:var(--sunk)}
+.pager .next{grid-column:2;text-align:right;border-left:1px solid var(--line)}
+.pager span{
+  display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:.15rem;
+}
+
+/* ================= search ================= */
+.find{
+  display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;
+  padding:.85rem var(--pad);border-bottom:1px solid var(--line);
+  background:var(--surface);
+}
+.find label{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+}
+.find input{
+  flex:1 1 16rem;min-width:0;
+  font:inherit;font-size:1rem;color:var(--ink);
+  padding:.4rem .6rem;border:1px solid var(--line);border-radius:2px;
+  background:var(--paper);
+}
+.find input:focus{outline:2px solid var(--teal);outline-offset:-1px;border-color:var(--teal)}
+.tally{
+  margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
+  color:var(--muted);white-space:nowrap;
 }

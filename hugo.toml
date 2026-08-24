@@ -5,6 +5,20 @@
 # "taxonomy" or "term" there, the tag pages never render and nothing says
 # so. See the README.
 
+# What counts as near. Tags first, then recency as a tie-break.
+[related]
+  includeNewer = true
+  threshold = 20
+  toLower = true
+
+  [[related.indices]]
+    name = "tags"
+    weight = 90
+
+  [[related.indices]]
+    name = "date"
+    weight = 10
+
 [taxonomies]
   tag = "tags"
 

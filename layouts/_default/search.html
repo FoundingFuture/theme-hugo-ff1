@@ -1,0 +1,44 @@
+{{ define "main" }}
+{{/* Search across everything the site publishes.
+
+     The index is built here, at build time, and written out as its own
+     fingerprinted file rather than inlined in the page. That is deliberate.
+     Hugo will not merge an [outputs] block from a theme into the site's own,
+     so a theme cannot add a JSON output format and have it take effect.
+     resources.FromString needs no site configuration at all, so the theme
+     stays self-contained and the page stays small. */}}
+{{ $idx := slice }}
+{{ range site.RegularPages }}
+  {{ if ne .Layout "search" }}
+    {{ $idx = $idx | append (dict
+        "t" .Title
+        "n" (.Date.Format "01.02")
+        "u" .RelPermalink
+        "s" (cond (eq .CurrentSection.Title .Title) "" .CurrentSection.Title)
+        "d" (.Description | default "")
+        "g" (.Params.tags | default slice)
+        "b" (.Plain | replaceRE `\s+` " " | truncate 1200 "")) }}
+  {{ end }}
+{{ end }}
+{{ $index := resources.FromString "search/index.json" (jsonify $idx) | fingerprint }}
+<main class="piece" data-index="{{ $index.RelPermalink }}">
+  {{ partial "crumb.html" . }}
+  <header class="head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="deck">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="find">
+    <label for="q">Search</label>
+    <input id="q" type="search" autocomplete="off" autofocus
+           placeholder="A word from a title, the text or a tag"
+           aria-describedby="tally">
+    <p id="tally" class="tally" role="status">{{ len $idx }} pieces</p>
+  </div>
+
+  <div class="rows" id="hits"></div>
+
+  {{ with .Content }}<div class="body-copy">{{ . }}</div>{{ end }}
+</main>
+{{ partial "footer.html" . }}
+{{ end }}

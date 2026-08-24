@@ -5,6 +5,7 @@
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="deck">{{ . }}</p>{{ end }}
   </header>
+  {{ partial "toc.html" . }}
   {{ with .Content }}<div class="body-copy">{{ . }}</div>{{ end }}
 
   {{ with .Sections }}
@@ -26,6 +27,17 @@
   <section class="sec">
     {{ partial "section-head.html" (dict "title" "Pieces" "count" (printf "%d" (len .))) }}
     {{ partial "index-rows.html" (dict "pages" (sort . "Date" "desc")) }}
+  </section>
+  {{ end }}
+
+  {{/* Everything under the subtopics as well. Without this a topic three
+       levels deep is a dead end: its cards count pieces it never lists. */}}
+  {{ $deeper := complement .RegularPages .RegularPagesRecursive }}
+  {{ with $deeper }}
+  <section class="sec">
+    {{ partial "section-head.html" (dict "title" "Further down"
+        "count" (printf "%d" (len .))) }}
+    {{ partial "index-rows.html" (dict "pages" (sort . "Date" "desc") "showSection" true) }}
   </section>
   {{ end }}
 </main>

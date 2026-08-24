@@ -26,6 +26,10 @@
   {{ block "main" . }}{{ end }}
  </div>
 </div>
+{{ if eq .Layout "search" }}
+{{ $js := resources.Get "js/search.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{ end }}
 {{ if eq .Kind "taxonomy" }}
 {{ $js := resources.Get "js/tags.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>

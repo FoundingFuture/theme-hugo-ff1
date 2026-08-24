@@ -1,0 +1,11 @@
+{{/* A long piece shows its own shape before the reader commits to it.
+     Fewer than three headings is not a shape worth showing.
+     .Fragments.Headings is the heading tree, so its length counts only the
+     top of that tree. .Identifiers is the flat list, which is the count. */}}
+{{ $n := len .Fragments.Identifiers }}
+{{ if ge $n 3 }}
+<details class="toc">
+  <summary><span class="nm">On this page</span><span class="n">{{ $n }}</span><span class="chev" aria-hidden="true"></span></summary>
+  {{ .TableOfContents }}
+</details>
+{{ end }}

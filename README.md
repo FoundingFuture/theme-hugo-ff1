@@ -5,7 +5,8 @@ A Hugo theme for a site with a lot to say and one screen to say it on.
 Topics nest as deep as the content directory does, and the menu follows
 without a line of configuration. Each topic carries a colour that means the
 same thing wherever it appears. Rows that open are set in small capitals, so
-the lettering says which way is deeper. Nothing here runs a script.
+the lettering says which way is deeper. Two small scripts run, both of them
+for finding things, and the pages work without either.
 
 ## What it expects
 
@@ -27,7 +28,7 @@ which is what makes the next click obvious. The selection is in the URL, so
 a narrowed view can be sent to someone.
 
 Every tag is also a real page at `/tags/<tag>/`, and that is what a browser
-without JavaScript follows. The narrowing is the only script in the theme.
+without JavaScript follows. The narrowing is a script; the tag pages are not.
 
 **One thing will stop it working silently.** If your site's config lists
 `taxonomy` or `term` in `disableKinds`, the tag pages are never built and
@@ -36,6 +37,45 @@ nothing reports it. Remove them:
 ```toml
 disableKinds = ["rss", "sitemap"]   # not "taxonomy", not "term"
 ```
+
+## Finding things
+
+A site with a lot of pieces has one real problem, which is getting a reader
+to the one they want. Six things address it, and none of them needs
+configuring.
+
+**Search.** Give a page `layout: search` in its front matter and it becomes
+one. The index is built at build time and written out as its own file, so
+the page stays small and nothing is fetched until the reader opens it.
+Titles and tags outrank body text, and several words narrow rather than
+widen.
+
+```yaml
+---
+title: "Search"
+layout: search
+---
+```
+
+**Near this.** Under each piece, up to four others that share its tags,
+ranked by how much they share. Tune it with a `[related]` block in your
+config, or leave it, because the theme ships one.
+
+**Previous and next.** Reading straight through a topic, rather than going
+back to the list each time.
+
+**On this page.** A piece with three headings or more folds out its own
+contents. Fewer than three is not a shape worth showing.
+
+**A link to every heading.** Hover a heading and a `#` appears, so any part
+of a long piece can be sent to someone.
+
+**Everything further down.** A topic lists its own pieces, then the pieces
+in its subtopics beneath them, each labelled with where it came from. A
+reader on a topic page sees the whole topic, not just its top layer.
+
+Sitemaps and feeds are Hugo's, and the theme leaves them switched on. If
+your config lists `sitemap` or `rss` in `disableKinds`, they are not built.
 
 ## The line at the foot
 

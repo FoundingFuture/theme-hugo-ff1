@@ -4,7 +4,7 @@
 {{- range $pages }}
   <a class="row" href="{{ .RelPermalink }}">
     <span class="d">{{ .Date.Format "01.02" }}</span>
-    <span class="t">{{ .Title }}</span>
+    <span class="t">{{ .Title }}{{ if $.showSection }}{{ with .CurrentSection }}<em>{{ .Title }}</em>{{ end }}{{ end }}</span>
     {{- with .Params.kind }}<span class="k" data-t="{{ $.colour | default "teal" }}">{{ . }}</span>{{ end }}
   </a>
 {{- end }}
