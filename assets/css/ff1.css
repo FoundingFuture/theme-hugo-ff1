@@ -396,8 +396,15 @@ footer.foot .sp{margin-left:auto}
    These are drawn at their size, so the whole label holds one weight. */
 @font-face{
   font-family:'SmallCaps';
-  src:url('../fonts/bricolage-smallcaps.woff2') format('woff2');
+  src:url('../fonts/source-sans-3-smallcaps.woff2') format('woff2');
   font-weight:400;font-display:swap;
+}
+/* Cut from the display face for titles. Its lowercase glyphs are already
+   small capitals, so nothing needs font-variant-caps. */
+@font-face{
+  font-family:'DisplayCaps';
+  src:url('../fonts/bricolage-smallcaps-700.woff2') format('woff2');
+  font-weight:700;font-display:swap;
 }
 
 /* ---- level two that opens further: a row, never a filled pill ---- */
@@ -439,7 +446,7 @@ footer.foot .sp{margin-left:auto}
 .topics details.sub>summary .nm{font-size:1rem}
 
 /* the main page row names the topic, so it takes the topic's lettering */
-.topics .all a{
+ .topics .all a{
   font-family:'SmallCaps',var(--text);
   font-variant-caps:small-caps;letter-spacing:.03em;
 }
@@ -470,11 +477,9 @@ footer.foot .sp{margin-left:auto}
 .head{padding:1.3rem var(--pad) 1.15rem;border-bottom:1px solid var(--line)}
 .head h1{
   margin:0 0 .6rem;color:var(--ink);max-width:22ch;
-  /* the display face, in small capitals. Bricolage has no drawn ones,
-     upstream or from any CDN, so these are capitals the browser scales.
-     At 800 the scaled strokes land close enough to the full letter that
-     the mismatch does not read, which it did at 400 in the menu. */
-  font-family:var(--display);font-variant-caps:small-caps;font-weight:800;
+  /* drawn small capitals, cut from the display face for this weight.
+     No font-variant-caps: the lowercase glyphs are the small capitals. */
+  font-family:'DisplayCaps',var(--display),sans-serif;font-weight:700;
   font-size:clamp(1.85rem,4.3vw,2.8rem);line-height:1.06;letter-spacing:-.005em;
 }
 .deck{

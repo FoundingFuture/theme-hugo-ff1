@@ -17,7 +17,12 @@ instance rather than being invented, because a heavier cut is wider.
 Every character the font has is kept. Anything with an uppercase form
 gets the small capital, and everything else is left alone.
 
-    uv run scripts/build-smallcaps.py
+One cut per weight it has to stand beside, because a small capital is
+calibrated against the capital next to it. The menu sets 500, a page
+title sets 800.
+
+    uv run scripts/build-smallcaps.py            both weights
+    uv run scripts/build-smallcaps.py 800        just one
 """
 
 import sys
@@ -30,11 +35,16 @@ from fontTools.ttLib import TTFont
 from fontTools.varLib.instancer import instantiateVariableFont
 
 SOURCE = Path("scripts/BricolageGrotesque.ttf")
-OUT = Path("static/fonts/bricolage-smallcaps.woff2")
+
 
 HEIGHT = 0.85      # of cap height
 WEIGHT = 0.92      # of the capital's stroke
-TARGET_WGHT = 500  # the weight these small capitals stand beside
+# Titles only. The menu keeps the face it always had.
+#
+# 800 is the top of the axis, so a cut calibrated there has nowhere
+# heavier to take its capitals from and lands at 0.85, which is what a
+# browser already does for free. 700 leaves the headroom the method needs.
+WEIGHTS = (700,)
 OPSZ = 24
 FAMILY = "Bricolage Small Caps"
 AUTHOR = "Eddie Niese"
@@ -68,20 +78,17 @@ def find_weight(path, want):
     return round((low + high) / 2, 1)
 
 
-def main():
-    if not SOURCE.exists():
-        print(f"no font at {SOURCE}. Fetch the variable Bricolage first.")
-        return 1
-
-    base = instance(SOURCE, TARGET_WGHT)
-    want = stem(base) * WEIGHT / HEIGHT * HEIGHT   # the stroke we are after
-    want = stem(base) * WEIGHT
+def cut(target):
+    """One small-capitals face, calibrated against one weight."""
+    out = Path(f"static/fonts/bricolage-smallcaps-{target}.woff2")
+    base = instance(SOURCE, target)
+    want = stem(base) * WEIGHT      # the stroke we are after
     source_wght = find_weight(SOURCE, want)
     caps = instance(SOURCE, source_wght)
 
     cap_stem = stem(base)
     got = stem(caps) * HEIGHT
-    print(f"  capital stem {cap_stem} at wght {TARGET_WGHT}")
+    print(f"  capital stem {cap_stem} at wght {target}")
     print(f"  small capital wants {want:.1f}, taken from wght {source_wght} "
           f"and scaled to {got:.1f}")
 
@@ -108,9 +115,10 @@ def main():
     # Named for what it is. The source's own name said 96pt ExtraBold,
     # which this is not: it is one cut, at one optical size and one weight.
     slug = FAMILY.replace(" ", "")
-    for nid, value in ((1, FAMILY), (2, "Regular"), (3, f"{slug}-Regular-2026"),
-                       (4, FAMILY), (6, f"{slug}-Regular"),
-                       (16, FAMILY), (17, "Regular")):
+    style = "Regular" if target < 600 else "Bold"
+    for nid, value in ((1, FAMILY), (2, style), (3, f"{slug}-{style}-2026"),
+                       (4, f"{FAMILY} {style}"), (6, f"{slug}-{style}"),
+                       (16, FAMILY), (17, style)):
         base["name"].setName(value, nid, 3, 1, 0x409)
 
     # The original notice stays, because the licence says so and because it
@@ -130,10 +138,21 @@ def main():
     if not licence.exists():
         print(f"  WARNING: {licence} is missing. The OFL has to ship beside it.")
 
+    base["OS/2"].usWeightClass = target
     base.flavor = "woff2"
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    base.save(OUT)
-    print(f"  {done} characters cut, {OUT} is {OUT.stat().st_size // 1024}KB")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    base.save(out)
+    print(f"  {done} characters cut, {out.name} is {out.stat().st_size // 1024}KB")
+
+
+def main():
+    if not SOURCE.exists():
+        print(f"no font at {SOURCE}. Fetch the variable Bricolage first.")
+        return 1
+    if not Path("static/fonts/OFL.txt").exists():
+        print("  WARNING: static/fonts/OFL.txt is missing. It has to ship.")
+    for target in ([int(a) for a in sys.argv[1:]] or list(WEIGHTS)):
+        cut(target)
     return 0
 
 
