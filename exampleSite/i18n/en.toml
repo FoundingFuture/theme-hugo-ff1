@@ -1,0 +1,5 @@
+# The theme's own words, overridden for this example site. Hugo merges this
+# over the theme's i18n/en.toml one key at a time, so only what is listed
+# here changes. This file is itself a demonstration of that.
+[reading]
+other = "What it does"
