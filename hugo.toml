@@ -13,3 +13,11 @@
 # fall out of step with the page. A site with thousands of pieces would want
 # a separate index instead, and would have to declare the output itself,
 # because Hugo does not take [outputs] from a theme.
+
+[params]
+  # The line at the foot of every page crediting Hugo and this theme.
+  # Set false in your own config to drop it.
+  colophon = true
+  # Where the theme's name points. Your own copy if you have changed it.
+  themeURL = "https://foundingfuture.com/template/"
+

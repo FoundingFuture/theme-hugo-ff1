@@ -194,6 +194,15 @@ footer.foot{
 }
 footer.foot b{color:var(--ink);font-weight:400}
 footer.foot .sp{margin-left:auto}
+/* a full-width line of its own inside the footer's flex row */
+.colophon{
+  flex:0 0 100%;margin:.45rem 0 0;padding-top:.5rem;
+  border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;
+  text-transform:none;color:var(--muted);
+}
+.colophon a{color:var(--body);text-decoration:none;border-bottom:1px solid var(--line)}
+.colophon a:hover{color:var(--ink);border-bottom-color:var(--teal)}
 
 @media (max-width:60rem){
   :root{--rail:100%;--menugap:.8rem}

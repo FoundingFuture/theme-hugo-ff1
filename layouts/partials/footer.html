@@ -3,4 +3,15 @@
   {{- range $i, $d := site.Params.domains }}
   <span{{ if eq $i 0 }} class="sp"{{ end }}>{{ $d }}</span>
   {{- end }}
+  {{/* Kept inside the footer rather than beside it, because a sibling here
+       becomes a grid item of its own and lands in the wrong column. See
+       docs/layout.md.
+
+       Shown unless a site sets params.colophon to false. */}}
+  {{- if ne site.Params.colophon false }}
+  <p class="colophon">This website was generated using
+    <a href="https://gohugo.io/" rel="noopener">Hugo</a> and the
+    <a href="{{ site.Params.themeURL | default "https://foundingfuture.com/template/" }}" rel="noopener">FoundingFuture&nbsp;I</a>
+    theme.</p>
+  {{- end }}
 </footer>

@@ -37,6 +37,19 @@ nothing reports it. Remove them:
 disableKinds = ["rss", "sitemap"]   # not "taxonomy", not "term"
 ```
 
+## The line at the foot
+
+Every page ends with a line crediting Hugo and this theme. It is there
+because attribution costs a sentence and is easy to forget, not because the
+licence asks for it. Drop it whenever you like:
+
+```toml
+[params]
+  colophon = false
+```
+
+`params.themeURL` points the theme's name wherever you prefer.
+
 ## Making it yours
 
 The theme ships a plain wordmark. Put your own at
