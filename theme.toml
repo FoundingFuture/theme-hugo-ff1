@@ -1,0 +1,12 @@
+name = "FoundingFuture I"
+license = "MIT"
+licenselink = "https://github.com/FoundingFuture/foundingfuture-i/blob/main/LICENSE"
+description = "A dense publishing theme. Topics of any depth in a colour-coded menu, small caps for what opens, and a reading layer built for a lot of text on one page."
+homepage = "https://foundingfuture.com/"
+min_version = "0.146.0"
+tags = ["blog", "documentation", "topics", "dense", "no-javascript", "responsive"]
+features = ["nested sections", "colour-coded navigation", "self-hosted fonts", "no third-party requests"]
+
+[author]
+  name = "Eddie Niese"
+  homepage = "https://foundingfuture.com/"
