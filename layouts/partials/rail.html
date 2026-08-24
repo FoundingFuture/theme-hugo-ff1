@@ -6,7 +6,8 @@
 {{- with site.Params.extraNav }}
   <ul class="topics">
   {{- range . }}
-    <li class="plain"><a href="{{ .url }}"{{ if eq $.RelPermalink .url }} aria-current="page"{{ end }}>{{ .name }}</a></li>
+    {{- $url := partial "href.html" .url }}
+    <li class="plain"><a href="{{ $url }}"{{ if eq $.RelPermalink $url }} aria-current="page"{{ end }}>{{ .name }}</a></li>
   {{- end }}
   </ul>
 {{- end }}
@@ -14,7 +15,7 @@
   <h2>{{ $.Scratch.Set "x" "" }}{{ .title | default "Kinds" }}</h2>
   <ul>
   {{- range .items }}
-    <li><a href="{{ .url }}">{{ .name }}{{ with .count }} <span class="n">{{ . }}</span>{{ end }}</a></li>
+    <li><a href="{{ partial "href.html" .url }}">{{ .name }}{{ with .count }} <span class="n">{{ . }}</span>{{ end }}</a></li>
   {{- end }}
   </ul>
 {{- end }}

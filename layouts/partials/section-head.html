@@ -1,3 +1,3 @@
 {{/* The banded header every block on a page carries. */}}
 <header><h2>{{ .title }}</h2>{{ with .count }}<span class="c">{{ . }}</span>{{ end }}
-{{- with .more }}<a class="more" href="{{ .url }}">{{ .label }} &rarr;</a>{{ end }}</header>
+{{- with .more }}<a class="more" href="{{ partial "href.html" .url }}">{{ .label }} &rarr;</a>{{ end }}</header>

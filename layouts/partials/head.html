@@ -3,7 +3,7 @@
 <title>{{ block "title" . }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.tagline }}{{ end }}">
 {{ with site.Params.robots }}<meta name="robots" content="{{ . }}">{{ end }}
-{{ range site.Params.icons }}<link rel="{{ .rel }}" href="{{ .href }}"{{ with .type }} type="{{ . }}"{{ end }}{{ with .sizes }} sizes="{{ . }}"{{ end }}>
+{{ range site.Params.icons }}<link rel="{{ .rel }}" href="{{ partial "href.html" .href }}"{{ with .type }} type="{{ . }}"{{ end }}{{ with .sizes }} sizes="{{ . }}"{{ end }}>
 {{ end }}
 {{ $css := resources.Get "css/ff1.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

@@ -1,0 +1,16 @@
+{{- /* A url from configuration, resolved against the site's baseURL.
+
+       relURL leaves a leading slash alone, treating it as already relative
+       to the server root. That is wrong for a site served under a subpath,
+       where /tags/ has to become /template/tags/, and it is why the rail's
+       links used to 404 there. Trimming the slash first is what makes
+       relURL prefix it.
+
+       A url that points somewhere else is left exactly as it was: one with
+       a scheme, and a protocol-relative one, which has no scheme to parse
+       and so has to be spotted by its two slashes. */ -}}
+{{- $u := . -}}
+{{- if and (not (urls.Parse $u).IsAbs) (not (hasPrefix $u "//")) -}}
+  {{- $u = $u | strings.TrimPrefix "/" | relURL -}}
+{{- end -}}
+{{- return $u -}}
