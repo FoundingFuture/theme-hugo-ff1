@@ -47,3 +47,13 @@ Nothing else needs overriding to look like your own.
 
 MIT for the theme. The typefaces travel under the SIL Open Font License, and
 their licences ship beside them in `static/fonts/`.
+
+## Working on the theme
+
+`docs/layout.md` explains how the frame is put together, and the two things
+that have caught every layout fault so far: `display:contents` promoting
+every child to a grid item, and an `auto` column growing with a spanning
+item rather than with its own contents.
+
+Read it before adding anything to `baseof.html`.
+
