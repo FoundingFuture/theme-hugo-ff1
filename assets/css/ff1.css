@@ -223,6 +223,7 @@ footer.foot .sp{margin-left:auto}
   /* the panel is anchored to the button's column, not the page */
   .railwrap::details-content{grid-column:2;grid-row:3;position:relative}
   main{grid-column:1 / -1;grid-row:3}
+  .foot{grid-column:1 / -1;grid-row:4}
   /* the panel floats over the content rather than taking a row. In flow it
      opened inside column two and stretched the wordmark's cell beside it. */
   .rail{
@@ -389,6 +390,7 @@ footer.foot .sp{margin-left:auto}
   .railwrap>summary{grid-column:1;grid-row:3;margin:var(--menugap) 1.25rem}
   .railwrap::details-content{grid-column:1;grid-row:4;position:relative}
   main{grid-column:1;grid-row:5}
+  .foot{grid-column:1;grid-row:6}
   .rail{grid-column:1;grid-row:auto}
   .strip p{text-align:center;font-size:1rem}
   .brand svg{max-width:14rem}
