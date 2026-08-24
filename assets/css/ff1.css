@@ -93,20 +93,7 @@ a{color:inherit}
      they are more specific than this. */
   font-family:'Menu',var(--text);
 }
-.rail h2{
-  font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--muted);
-  margin:0 0 .5rem;padding:0 1.1rem;font-weight:400;
-}
-.rail ul+h2{margin-top:1.5rem}
 .rail ul{list-style:none;margin:0 0 .25rem;padding:0}
-.rail li a{
-  display:flex;align-items:baseline;gap:.5rem;
-  padding:.28rem 1.1rem;text-decoration:none;font-size:1rem;color:var(--body);
-}
-.rail li a:hover{background:var(--sunk);color:var(--ink)}
-.rail li a .n{margin-left:auto;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
-.rail li ul a{padding-left:2rem;font-size:.94rem;color:var(--muted)}
 
 /* ---- section headers: a rule with a label sitting in it ---- */
 .sec{border-bottom:1px solid var(--line)}
@@ -315,7 +302,7 @@ footer.foot .sp{margin-left:auto}
    square hover, which is how Printing came to sit further right than
    everything above it. */
 .topics>li>a{
-  display:flex;align-items:center;padding:.36rem .5rem;border-radius:var(--r);
+  display:flex;align-items:center;gap:.5rem;padding:.36rem .5rem;border-radius:var(--r);
   font-size:1.03rem;color:var(--body);text-decoration:none;
   transition:background .18s ease,color .18s ease;
 }
@@ -327,7 +314,8 @@ footer.foot .sp{margin-left:auto}
 .topics summary:hover{background:color-mix(in oklab,var(--tc) 13%, transparent);color:var(--ink)}
 .topics details[open]>summary{background:var(--tc);color:#fff}
 .topics details[open]>summary .n{color:#fff;opacity:.75}
-.topics summary .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.topics summary .n,
+.topics>li>a .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
 
 /* the chevron turns as the section opens */
 .topics .chev{

@@ -24,12 +24,4 @@
   {{- end }}
   </ul>
 {{- end }}
-{{- with site.Params.kinds }}
-  <h2>{{ .title | default "Kinds" }}</h2>
-  <ul>
-  {{- range .items }}
-    <li><a href="{{ partial "href.html" .url }}">{{ .name }}{{ with .count }} <span class="n">{{ . }}</span>{{ end }}</a></li>
-  {{- end }}
-  </ul>
-{{- end }}
 </aside>
