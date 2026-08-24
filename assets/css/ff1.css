@@ -199,7 +199,10 @@ footer.foot .sp{margin-left:auto}
   :root{--rail:100%;--menugap:.8rem}
   /* the masthead keeps two columns even here, or the logo sits alone beside
      a blank half screen, which is the opposite of collapsing to save room */
-  .frame{grid-template-columns:auto minmax(0,1fr)}
+  /* not auto: main spans both columns, and a spanning item hands part of
+     its max-content to every track it covers, so an auto track here grew
+     to most of the page. The wordmark caps at 11rem, so 13rem holds it. */
+  .frame{grid-template-columns:minmax(0,13rem) minmax(0,1fr)}
   .side,.body{display:contents}
   /* the wordmark is two rows tall, so the tagline and the menu control
      stack beside it and the white beneath the tagline is used */
@@ -489,44 +492,12 @@ footer.foot .sp{margin-left:auto}
   padding-left:1rem;border-left:2px solid var(--teal);
 }
 .deck b{color:var(--ink);font-weight:500}
-.zooms{display:grid;grid-template-columns:repeat(3,1fr)}
-.zt{position:relative;border-right:1px solid var(--line)}
-.zt:last-child{border-right:none}
-.zt img{height:clamp(110px,13vw,180px)}
-.zt .n,.zt .mag{
-  position:absolute;font-family:var(--mono);font-size:.7rem;
-  padding:.1rem .3rem;background:#07040Ccc;color:#F3E4EE;
-}
-.zt .n{right:.3rem;top:.3rem;letter-spacing:.14em}
-.zt .mag{left:.3rem;bottom:.3rem;color:var(--amber)}
 .body-copy{padding:1.15rem var(--pad) 1.4rem}
-/* ---- proposition ---- */
-.stmt{padding:1.15rem var(--pad) 1.4rem;border-left:3px solid var(--amber);background:var(--surface)}
-.prop{margin:0;font-size:1.08rem;line-height:1.55;color:var(--ink);max-width:72ch}
-.prop b{color:var(--amber);font-weight:600}
-ol.pf{margin:.9rem 0 0;padding:0;list-style:none;counter-reset:s;max-width:78ch}
-ol.pf li{
-  counter-increment:s;position:relative;padding-left:2.2rem;margin-bottom:.5rem;
-  font-size:.94rem;line-height:1.62;color:var(--body);
-}
-ol.pf li::before{
-  content:counter(s,lower-roman)".";position:absolute;left:0;top:0;width:1.7rem;
-  text-align:right;font-family:var(--mono);font-size:.8rem;color:var(--rose);
-}
-ol.pf li em{font-style:normal;color:var(--ink)}
-.qed{color:var(--amber)}
-.coda{
-  margin:1rem 0 0;padding-top:.9rem;border-top:1px solid var(--line);
-  font-family:var(--display);font-weight:400;font-size:1.08rem;line-height:1.5;
-  color:var(--ink);max-width:74ch;
-}
-.coda span{font-family:var(--mono);font-size:.95rem;color:var(--amber)}
 .cites{
   padding:.7rem var(--pad);background:var(--sunk);border-top:1px solid var(--line);
   font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;
   text-transform:uppercase;color:var(--muted);line-height:1.7;
 }
-.zt{border-right:none;border-bottom:1px solid var(--line)}
 
 /* ================= narrowing by tag ================= */
 .facets{

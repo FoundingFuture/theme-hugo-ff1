@@ -1,4 +1,5 @@
 {{ define "main" }}
+<main class="piece">
 {{ $topics := site.GetPage "/topics" }}
 {{ $recent := where site.RegularPages "Section" "!=" "" }}
 
@@ -39,5 +40,6 @@
 </section>
 {{ end }}
 
+</main>
 {{ partial "footer.html" . }}
 {{ end }}
