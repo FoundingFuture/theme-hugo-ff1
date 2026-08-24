@@ -93,7 +93,7 @@ a{color:inherit}
      they are more specific than this. */
   font-family:'Menu',var(--text);
 }
-.rail ul{list-style:none;margin:0 0 .12rem;padding:0}
+.rail ul{list-style:none;margin:0 0 .18rem;padding:0}
 
 /* ---- section headers: a rule with a label sitting in it ---- */
 .sec{border-bottom:1px solid var(--line)}
@@ -279,7 +279,7 @@ footer.foot .sp{margin-left:auto}
 
 /* ---- topic menu: each topic carries its colour, open state fills it ---- */
 .rail .topics{--r:7px;list-style:none;margin:0 0 .25rem;padding:0 .6rem}
-.topics>li{margin-bottom:.05rem}
+.topics>li{margin-bottom:.08rem}
 .rail .topics{--tc:var(--teal)}
 .topics details[data-t="indigo"]{--tc:var(--indigo)}
 .topics details[data-t="rose"]{--tc:var(--rose)}
@@ -287,7 +287,7 @@ footer.foot .sp{margin-left:auto}
 
 .topics summary{
   display:flex;align-items:center;gap:.5rem;cursor:pointer;list-style:none;
-  padding:.18rem .5rem;line-height:1.25;border-radius:var(--r);font-size:1.03rem;color:var(--body);
+  padding:.28rem .5rem;line-height:1.25;border-radius:var(--r);font-size:1.03rem;color:var(--body);
   transition:background .18s ease,color .18s ease;
 }
 .topics summary::-webkit-details-marker{display:none}
@@ -302,7 +302,7 @@ footer.foot .sp{margin-left:auto}
    square hover, which is how Printing came to sit further right than
    everything above it. */
 .topics>li>a{
-  display:flex;align-items:center;gap:.5rem;padding:.18rem .5rem;line-height:1.25;border-radius:var(--r);
+  display:flex;align-items:center;gap:.5rem;padding:.28rem .5rem;line-height:1.25;border-radius:var(--r);
   font-size:1.03rem;color:var(--body);text-decoration:none;
   transition:background .18s ease,color .18s ease;
 }
@@ -333,11 +333,11 @@ footer.foot .sp{margin-left:auto}
   padding:0 .35rem;   /* horizontal only. vertical padding floors the grid
                          item's height and jolts the end of every close */
 }
-.topics details ul li{margin-bottom:.05rem}
+.topics details ul li{margin-bottom:.08rem}
 .topics details ul li:first-child{margin-top:.32rem}
 .topics details ul li:last-child{margin-bottom:.32rem}
 .topics details ul a{
-  display:flex;align-items:baseline;gap:.5rem;padding:.15rem .5rem;line-height:1.25;
+  display:flex;align-items:baseline;gap:.5rem;padding:.25rem .5rem;line-height:1.25;
   border-radius:6px;text-decoration:none;font-size:.98rem;color:var(--body);
   background:transparent;
   transition:background .18s ease,color .18s ease;
@@ -427,7 +427,7 @@ footer.foot .sp{margin-left:auto}
 
 /* ---- level two that opens further: a row, never a filled pill ---- */
 .topics details.sub>summary{
-  padding:.15rem .5rem;line-height:1.25;border-radius:6px;font-size:.98rem;
+  padding:.25rem .5rem;line-height:1.25;border-radius:6px;font-size:.98rem;
   color:var(--body);background:transparent;
 }
 .topics details.sub>summary:hover{background:color-mix(in oklab,var(--tc) calc(22% + var(--p) * 12%), var(--surface));color:var(--ink)}
@@ -449,7 +449,7 @@ footer.foot .sp{margin-left:auto}
   background:color-mix(in oklab,var(--tc) calc(10% + var(--p) * 12%), var(--surface));
 }
 .topics details.sub>ul{border-radius:8px;margin:0 0 .1rem .3rem;padding:0 .3rem}
-.topics details.sub ul a{font-size:.94rem;padding:.13rem .45rem}
+.topics details.sub ul a{font-size:.94rem;padding:.23rem .45rem}
 .topics details ul a:hover{background:color-mix(in oklab,var(--tc) calc(22% + var(--p) * 12%), var(--surface));color:var(--ink)}
 .topics details.sub ul li:first-child{margin-top:.26rem}
 .topics details.sub ul li:last-child{margin-bottom:.26rem}
