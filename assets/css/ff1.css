@@ -476,7 +476,19 @@ footer.foot .sp{margin-left:auto}
 
 /* ================= a page: its trail, its head, its text =========== */
 /* ---- the piece sits in the same grid and bands as every other page ---- */
-.piece{background:var(--surface)}
+.piece{
+  background:var(--surface);
+  display:flex;flex-direction:column;   /* so the tail below can be measured */
+}
+/* Whatever is left between the last content and the footer, faded from the
+   page's white into the rule the footer sits under. It takes no height when
+   the content reaches the bottom on its own. */
+.piece::after{
+  content:"";flex:1 1 auto;
+  background:linear-gradient(to bottom,
+    var(--surface),
+    color-mix(in oklab,var(--muted) 45%, var(--line)));
+}
 .crumb{
   display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;
   padding:.55rem var(--pad);background:var(--sunk);border-bottom:1px solid var(--line);
