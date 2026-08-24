@@ -21,7 +21,7 @@
   --mono:'Plex Mono',ui-monospace,monospace;
 
   --rail:16rem;
-  --pad:1.75rem;   /* content's inset, and its room from the menu */
+  --pad:1.25rem;   /* content's inset from the edges of its column */
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -450,3 +450,69 @@ footer.foot .sp{margin-left:auto}
 .topics details.container[open]>summary{background:transparent;font-weight:400}
 .topics details.container[open]>summary .nm{color:var(--ink)}
 .topics details.container>summary{font-size:.9rem}
+
+
+/* ================= a page: its trail, its head, its text =========== */
+/* ---- the piece sits in the same grid and bands as every other page ---- */
+.piece{background:var(--surface)}
+.crumb{
+  display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;
+  padding:.55rem var(--pad);background:var(--sunk);border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+}
+.crumb a{color:var(--muted);text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+.crumb .sep{color:var(--line)}
+.crumb .here{color:var(--teal)}
+.crumb .formula{
+  margin-left:auto;text-transform:none;letter-spacing:.02em;color:var(--amber);
+}
+.head{padding:1.3rem var(--pad) 1.15rem;border-bottom:1px solid var(--line)}
+.head h1{
+  margin:0 0 .6rem;font-family:var(--display);font-weight:800;
+  font-size:clamp(1.9rem,4.6vw,3.1rem);line-height:1.04;letter-spacing:-.03em;
+  text-transform:uppercase;color:var(--ink);max-width:14ch;
+}
+.deck{
+  margin:0;font-size:1rem;line-height:1.62;color:var(--body);max-width:70ch;
+  padding-left:1rem;border-left:2px solid var(--teal);
+}
+.deck b{color:var(--ink);font-weight:500}
+.zooms{display:grid;grid-template-columns:repeat(3,1fr)}
+.zt{position:relative;border-right:1px solid var(--line)}
+.zt:last-child{border-right:none}
+.zt img{height:clamp(110px,13vw,180px)}
+.zt .n,.zt .mag{
+  position:absolute;font-family:var(--mono);font-size:.7rem;
+  padding:.1rem .3rem;background:#07040Ccc;color:#F3E4EE;
+}
+.zt .n{right:.3rem;top:.3rem;letter-spacing:.14em}
+.zt .mag{left:.3rem;bottom:.3rem;color:var(--amber)}
+.body-copy{padding:1.15rem var(--pad) 1.4rem}
+/* ---- proposition ---- */
+.stmt{padding:1.15rem var(--pad) 1.4rem;border-left:3px solid var(--amber);background:var(--surface)}
+.prop{margin:0;font-size:1.08rem;line-height:1.55;color:var(--ink);max-width:72ch}
+.prop b{color:var(--amber);font-weight:600}
+ol.pf{margin:.9rem 0 0;padding:0;list-style:none;counter-reset:s;max-width:78ch}
+ol.pf li{
+  counter-increment:s;position:relative;padding-left:2.2rem;margin-bottom:.5rem;
+  font-size:.94rem;line-height:1.62;color:var(--body);
+}
+ol.pf li::before{
+  content:counter(s,lower-roman)".";position:absolute;left:0;top:0;width:1.7rem;
+  text-align:right;font-family:var(--mono);font-size:.8rem;color:var(--rose);
+}
+ol.pf li em{font-style:normal;color:var(--ink)}
+.qed{color:var(--amber)}
+.coda{
+  margin:1rem 0 0;padding-top:.9rem;border-top:1px solid var(--line);
+  font-family:var(--display);font-weight:400;font-size:1.08rem;line-height:1.5;
+  color:var(--ink);max-width:74ch;
+}
+.coda span{font-family:var(--mono);font-size:.95rem;color:var(--amber)}
+.cites{
+  padding:.7rem var(--pad);background:var(--sunk);border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);line-height:1.7;
+}
+.zt{border-right:none;border-bottom:1px solid var(--line)}
