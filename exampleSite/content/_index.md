@@ -2,11 +2,33 @@
 title: FoundingFuture I
 ---
 
-{{< lead >}}A Hugo theme for deep content. Folders become the menu, at any depth. Search, tags and related pages are built in and need no service.{{< /lead >}}
+{{< lead >}}Every theme looks good with three posts in it. This one is built for what happens next.{{< /lead >}}
 
-```toml
-theme = "foundingfuture-i"
-```
+{{< columns >}}
+You chose a theme for its screenshot. Then you wrote the fourth piece, and
+the twelfth, and a section that needed subsections of its own. The hero
+image became rent you could not afford. The card grid ran out of cards. All
+that generous white space turned into scrolling.
+
+This one starts from the other end. It assumes you already have more to say
+than fits on a screen, and that you would rather show it than frame it.
+
+{{< pull >}}No hero image. No parallax. No photograph of a laptop on a desk.{{< /pull >}}
+
+#### Every pixel is working
+
+The menu is your content tree. Nest it as deep as the subject actually goes
+and it keeps up, with nothing to configure. Rows are dense, the measure is
+short, and each topic carries a colour that means the same thing on every
+page it appears.
+
+Finding things is the whole job. Search compiles into the build: no Algolia,
+no API key, no monthly bill. Tags narrow as you click. Every page shows what
+sits near it, what sits under it, and what comes next.
+{{< /columns >}}
+
+It will not win a design award. If you have three posts and a portfolio, buy
+something prettier and be happy. If the writing is the point, take the screen.
 
 {{< items >}}
 Search | no server | Compiled into the build. A title or a tag beats a body match
