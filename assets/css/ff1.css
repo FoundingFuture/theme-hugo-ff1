@@ -63,6 +63,9 @@ a{color:inherit}
 /* ---- page frame ---- */
 .frame{
   position:relative;
+  /* tall enough that a short page still puts its footer on the screen's
+     last line, and no taller, so a long one just flows past */
+  min-height:100vh;min-height:100dvh;
   display:grid;grid-template-columns:var(--rail) minmax(0,1fr);
   background:linear-gradient(to right,var(--surface) 0 var(--rail),var(--paper) var(--rail));
 }
@@ -80,6 +83,7 @@ a{color:inherit}
   display:flex;flex-direction:column;flex:1 1 auto;min-height:0;
 }
 .body{display:flex;flex-direction:column;min-width:0}
+.body>.foot{margin-top:auto}
 
 .rail{
   border-right:1px solid var(--line);
@@ -211,7 +215,8 @@ footer.foot .sp{margin-left:auto}
   /* not auto: main spans both columns, and a spanning item hands part of
      its max-content to every track it covers, so an auto track here grew
      to most of the page. The wordmark caps at 11rem, so 13rem holds it. */
-  .frame{grid-template-columns:minmax(0,13rem) minmax(0,1fr)}
+  .frame{grid-template-columns:minmax(0,13rem) minmax(0,1fr);
+    grid-template-rows:auto auto 1fr auto}
   .side,.body{display:contents}
   /* the wordmark is two rows tall, so the tagline and the menu control
      stack beside it and the white beneath the tagline is used */
@@ -392,7 +397,8 @@ footer.foot .sp{margin-left:auto}
      kept grid-column 2 from the wider layout, which is an implicit column
      outside a single-column grid, so it opened off screen. */
   :root{--menugap:.7rem}
-  .frame{grid-template-columns:100%}
+  .frame{grid-template-columns:100%;
+    grid-template-rows:auto auto auto auto 1fr auto}
   .brandcell{grid-column:1;grid-row:1;border-right:none;border-bottom:none}
   .strip{grid-column:1;grid-row:2;align-items:center;border-left:none}
   .frame::before{grid-column:1;grid-row:3}
