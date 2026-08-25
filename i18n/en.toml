@@ -17,14 +17,10 @@ other = "Menu"
 [index]
 other = "Index"
 
-[everything]
-other = "everything"
 
 [sections]
 other = "Topics"
 
-[allSections]
-other = "all topics"
 
 [subsections]
 other = "Subtopics"
