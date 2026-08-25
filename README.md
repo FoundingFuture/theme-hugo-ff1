@@ -12,31 +12,31 @@ them.
 **[See it running](https://foundingfuture.com/template/)**
 
 <p align="center">
-  <img src="exampleSite/content/screenshots/front.png"
+  <img src="https://raw.githubusercontent.com/FoundingFuture/theme-hugo-ff1/main/exampleSite/content/screenshots/front.png"
        alt="The front page, with two topics open in the menu" width="820">
 </p>
 
 <table>
 <tr>
-<td width="50%"><img src="exampleSite/content/screenshots/depth.png"
+<td width="50%"><img src="https://raw.githubusercontent.com/FoundingFuture/theme-hugo-ff1/main/exampleSite/content/screenshots/depth.png"
     alt="A topic three levels down with the tree open"><br>
     Three levels down. The menu is the content tree.</td>
-<td width="50%"><img src="exampleSite/content/screenshots/piece.png"
+<td width="50%"><img src="https://raw.githubusercontent.com/FoundingFuture/theme-hugo-ff1/main/exampleSite/content/screenshots/piece.png"
     alt="A piece showing contents, pager and related pages"><br>
     One piece: contents, linked headings, previous and next.</td>
 </tr>
 <tr>
-<td><img src="exampleSite/content/screenshots/search.png"
+<td><img src="https://raw.githubusercontent.com/FoundingFuture/theme-hugo-ff1/main/exampleSite/content/screenshots/search.png"
     alt="The search page part way through a query"><br>
     Search, mid-query. The index compiles into the build.</td>
-<td><img src="exampleSite/content/screenshots/tags.png"
+<td><img src="https://raw.githubusercontent.com/FoundingFuture/theme-hugo-ff1/main/exampleSite/content/screenshots/tags.png"
     alt="The tag page after one tag was clicked"><br>
     Tags after one click. Dead ends have gone.</td>
 </tr>
 </table>
 
 <p align="center">
-  <img src="exampleSite/content/screenshots/narrow.png"
+  <img src="https://raw.githubusercontent.com/FoundingFuture/theme-hugo-ff1/main/exampleSite/content/screenshots/narrow.png"
        alt="The same site at 430 pixels wide, menu folded into a bar" width="320"><br>
   <em>At 430 pixels the rail folds into a bar.</em>
 </p>
@@ -154,15 +154,16 @@ your config lists `sitemap` or `rss` in `disableKinds`, they are not built.
 `gallery` puts a row of pictures on the page. It snaps as it scrolls.
 
 ```
-{{< gallery label="What it looks like" >}}
-/img/shots/front.png | The front page
-/img/shots/depth.png | Three levels down
+{{< gallery >}}
+front.png | The front page
+depth.png | Three levels down
 {{< /gallery >}}
 ```
 
-One picture per line, the path first and the caption after a pipe. The
-caption doubles as the alt text. Paths run through the theme's url helper,
-so they survive a site served under a subpath.
+One picture per line, the file name first and the caption after a pipe. The
+caption doubles as the alt text. The pictures are page resources: put them
+in the page's own folder beside its `index.md`. A file that is not there is
+skipped.
 
 It is a grid with `scroll-snap` on it. No script, no timer, and no slide
 moving while somebody is still looking at it. A wheel, a trackpad, a touch
@@ -178,13 +179,15 @@ A title usually explains itself. "The deadbeat escapement" needs no help.
 A product name does not: on a list of pieces, `FoundingFuture I` tells a
 reader nothing.
 
-Give such a page a `kind` and every listing row carries a small label in the
-topic's colour.
+Give such a page a `params.kind` and every listing row carries a small label
+in the topic's colour. It sits under `params`, where Hugo keeps every custom
+field, because `kind` on its own is a name Hugo reserves and refuses.
 
 ```yaml
 ---
 title: "FoundingFuture I, a Hugo theme"
-kind: "hugo theme"
+params:
+  kind: "hugo theme"
 ---
 ```
 

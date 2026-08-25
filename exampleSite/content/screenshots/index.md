@@ -1,7 +1,9 @@
 ---
 title: "Screenshots"
-kind: "pictures"
+date: 2026-08-01
 description: "The theme carrying real content, photographed as it stands."
+params:
+  kind: "pictures"
 ---
 
 Every picture below is this site. Click one to see it full size.

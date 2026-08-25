@@ -3,7 +3,7 @@
 <div class="rows">
 {{- range $pages }}
   <a class="row" href="{{ .RelPermalink }}">
-    <span class="d">{{ .Date.Format "01.02" }}</span>
+    <span class="d"{{ if not .Date.IsZero }} title="{{ .Date.Format "2006-01-02" }}"{{ end }}>{{ if not .Date.IsZero }}{{ .Date.Format "01.02" }}{{ end }}</span>
     <span class="t">{{ .Title }}{{ if $.showSection }}{{ with .CurrentSection }}<em>{{ .Title }}</em>{{ end }}{{ end }}</span>
     {{- with .Params.kind }}<span class="k" data-t="{{ $.colour | default "teal" }}">{{ . }}</span>{{ end }}
   </a>

@@ -1,9 +1,10 @@
 ---
 title: "A clock on film"
-kind: "video"
 description: "What an escapement looks like at speed, and what it costs to show you."
 date: 2026-08-24
 tags: [precision]
+params:
+  kind: "video"
 ---
 
 An escapement is easier to watch than to describe. This is the theme's

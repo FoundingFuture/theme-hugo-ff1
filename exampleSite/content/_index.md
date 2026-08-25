@@ -1,5 +1,7 @@
 ---
 title: FoundingFuture I
+date: 2026-08-01
+description: A Hugo theme for topics of any depth, with the folder tree as the menu and dense text on one screen.
 ---
 
 {{< lead >}}Every theme looks good with three posts in it. This one is built for what happens next.{{< /lead >}}
@@ -15,7 +17,7 @@ than fits on a screen, and that you would rather show it than frame it.
 
 {{< pull >}}No hero image. No parallax. No photograph of a laptop on a desk.{{< /pull >}}
 
-#### Every pixel is working
+### Every pixel is working
 
 The menu is your content tree. Nest it as deep as the subject actually goes
 and it keeps up, with nothing to configure. Rows are dense, the measure is

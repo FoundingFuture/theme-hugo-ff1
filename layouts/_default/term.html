@@ -3,13 +3,13 @@
   {{ partial "crumb.html" . }}
   <header class="head">
     <h1>{{ .Title }}</h1>
-    <p class="deck">{{ len .Pages }} piece{{ if ne (len .Pages) 1 }}s{{ end }} tagged {{ .Title }}.</p>
+    <p class="deck">{{ i18n "termDeck" (dict "Count" (len .Pages) "Term" .Title "Taxonomy" .Data.Singular) }}</p>
   </header>
   <section class="sec">
-    {{ partial "section-head.html" (dict "title" "Tagged"
+    {{ partial "section-head.html" (dict "title" (i18n "piecesTitle")
         "count" (printf "%d" (len .Pages))
-        "more" (dict "url" (printf "%s/" (path.Dir .RelPermalink)) "label" "all tags")) }}
-    {{ partial "index-rows.html" (dict "pages" (sort .Pages "Date" "desc")) }}
+        "more" (dict "url" .Parent.RelPermalink "label" (i18n "allTerms" (dict "Taxonomy" .Data.Plural)))) }}
+    {{ partial "index-rows.html" (dict "pages" .Pages) }}
   </section>
 </main>
 {{ partial "footer.html" . }}

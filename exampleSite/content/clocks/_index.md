@@ -1,7 +1,9 @@
 ---
 title: Clocks
+date: 2026-08-01
 description: Keeping a rate without electricity, and the parts that argue about how.
-colour: teal
+params:
+  colour: teal
 ---
 
 Everything below is about the same problem stated four ways. A weight or a

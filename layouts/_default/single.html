@@ -4,12 +4,15 @@
   <header class="head">
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="deck">{{ . }}</p>{{ end }}
+    {{ if not .Date.IsZero }}
+    <p class="dateline"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>{{ if and (not .Lastmod.IsZero) (ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02")) }} &middot; {{ i18n "updated" }} <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time>{{ end }}</p>
+    {{ end }}
   </header>
   {{ partial "toc.html" . }}
 
   {{ with .Content }}<div class="body-copy">{{ . }}</div>{{ end }}
   {{ with .Params.sources }}
-  <div class="cites">{{ delimit . " &middot; " }}</div>
+  <div class="cites">{{ if reflect.IsSlice . }}{{ delimit . " &middot; " }}{{ else }}{{ . }}{{ end }}</div>
   {{ end }}
 
   {{/* Reading straight through a topic, rather than going back each time. */}}

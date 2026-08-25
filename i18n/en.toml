@@ -72,3 +72,25 @@ other = "Loading the index…"
 
 [searchFailed]
 other = "The index did not load."
+
+[updated]
+other = "updated"
+
+[linkToSection]
+other = "Link to this section"
+
+[termDeck]
+one = "{{ .Count }} piece, {{ .Taxonomy }} {{ .Term }}."
+other = "{{ .Count }} pieces, {{ .Taxonomy }} {{ .Term }}."
+
+[allTerms]
+other = "all {{ .Taxonomy }}"
+
+[termsDeck]
+other = "Pick one, then another. Those that cannot go with what you have picked drop away."
+
+[clear]
+other = "clear"
+
+[noMatch]
+other = "Nothing carries all of those together. Drop one."

@@ -1,7 +1,7 @@
 ---
 title: Gearing, in inches
 date: 2026-08-05
-description: A unit that survived the machine it described.
+description: Gear inches, a unit that outlived the high-wheel bicycle it was invented to describe.
 tags: [measurement, standards, geometry]
 ---
 

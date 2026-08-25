@@ -1,5 +1,6 @@
 {{ define "main" }}
 <main class="piece">
+<h1 class="vh">{{ .Title | default site.Title }}</h1>
 {{/* Every piece that lives in a section, whichever section that is. The
      header calls this the index, so it has to be all of them; narrowing it
      to site.MainSections would list one section and still say everything. */}}
@@ -23,7 +24,7 @@
   {{- range $i, $s := . }}
     <a class="card" href="{{ $s.RelPermalink }}" data-t="{{ $s.Params.colour | default (index $palette (mod $i (len $palette))) }}">
       <h3>{{ $s.Title }}</h3>
-      {{ with $s.Description }}<p>{{ . }}</p>{{ end }}
+      {{ with $s.Description | default ($s.Summary | plainify) }}<p>{{ . }}</p>{{ end }}
       <div class="meta">
         <span>{{ i18n "pieceCount" (len $s.RegularPagesRecursive) }}</span>
         {{ with len $s.Sections }}<span>{{ i18n "subsectionCount" . }}</span>{{ end }}

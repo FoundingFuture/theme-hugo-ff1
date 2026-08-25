@@ -1,0 +1,23 @@
+{{- /* A Markdown image whose src names a page resource is served from that
+       resource, sized and lazy. Anything else passes through as written.
+       A title becomes a figure caption. */ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $src := .Destination -}}
+{{- $w := "" -}}{{- $h := "" -}}
+{{- if not $u.IsAbs -}}
+  {{- $r := or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
+  {{- with $r -}}
+    {{- if eq .ResourceType "image" -}}
+      {{- if gt .Width 1600 }}{{ $r = .Resize "1600x" }}{{ end -}}
+      {{- $src = $r.RelPermalink -}}{{- $w = $r.Width -}}{{- $h = $r.Height -}}
+    {{- else -}}
+      {{- $src = .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $img := printf `<img src="%s" alt="%s"%s%s loading="lazy" decoding="async">` $src (.PlainText | htmlEscape) (cond (ne $w "") (printf ` width="%v"` $w) "") (cond (ne $h "") (printf ` height="%v"` $h) "") -}}
+{{- with .Title -}}
+<figure>{{ $img | safeHTML }}<figcaption>{{ . | markdownify }}</figcaption></figure>
+{{- else -}}
+{{ $img | safeHTML }}
+{{- end -}}

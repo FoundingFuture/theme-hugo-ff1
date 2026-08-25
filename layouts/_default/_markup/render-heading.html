@@ -1,3 +1,3 @@
 {{/* Every heading is addressable, so a section of a long piece can be
      linked to directly. The marker appears on hover and on focus. */}}
-<h{{ .Level }} id="{{ .Anchor }}">{{ .Text | safeHTML }}<a class="anchor" href="#{{ .Anchor }}" aria-label="Link to this section">#</a></h{{ .Level }}>
+<h{{ .Level }} id="{{ .Anchor }}">{{ .Text | safeHTML }}<a class="anchor" href="#{{ .Anchor }}" aria-label="{{ i18n "linkToSection" }}">#</a></h{{ .Level }}>

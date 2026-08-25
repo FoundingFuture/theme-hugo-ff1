@@ -15,8 +15,8 @@
     {{- range . }}
       <a class="card" href="{{ .RelPermalink }}">
         <h3>{{ .Title }}</h3>
-        {{ with .Description }}<p>{{ . }}</p>{{ end }}
-        <div class="meta"><span>{{ len .RegularPagesRecursive }} pieces</span></div>
+        {{ with .Description | default (.Summary | plainify) }}<p>{{ . }}</p>{{ end }}
+        <div class="meta"><span>{{ i18n "pieceCount" (len .RegularPagesRecursive) }}</span></div>
       </a>
     {{- end }}
     </div>
@@ -26,7 +26,9 @@
   {{ with .RegularPages }}
   <section class="sec">
     {{ partial "section-head.html" (dict "title" (i18n "piecesTitle") "count" (printf "%d" (len .))) }}
-    {{ partial "index-rows.html" (dict "pages" (sort . "Date" "desc")) }}
+    {{/* Hugo's default order: weight, then date newest first. A page sets
+         weight to pin its place. */}}
+    {{ partial "index-rows.html" (dict "pages" .) }}
   </section>
   {{ end }}
 
@@ -37,7 +39,7 @@
   <section class="sec">
     {{ partial "section-head.html" (dict "title" (i18n "furtherDown")
         "count" (printf "%d" (len .))) }}
-    {{ partial "index-rows.html" (dict "pages" (sort . "Date" "desc") "showSection" true) }}
+    {{ partial "index-rows.html" (dict "pages" . "showSection" true) }}
   </section>
   {{ end }}
 </main>

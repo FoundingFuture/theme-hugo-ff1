@@ -1,7 +1,9 @@
 ---
 title: Printing
+date: 2026-08-01
 description: Holding a sheet still, then letting it go at exactly the right moment.
-colour: rose
+params:
+  colour: rose
 ---
 
 ## Tools that stayed

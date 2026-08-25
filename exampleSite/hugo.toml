@@ -3,6 +3,10 @@ title = "FoundingFuture I"
 locale = "en"
 theme = "foundingfuture-i"
 
+# Needed only for a shortcode nested inside columns, as on the front page:
+# the nested one has become HTML by the time columns renders its Markdown,
+# and Goldmark drops that HTML unless this is on. Content never needs raw
+# HTML otherwise, and a site without nested shortcodes can leave this out.
 [markup.goldmark.renderer]
   unsafe = true
 

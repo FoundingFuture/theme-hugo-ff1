@@ -1,0 +1,21 @@
+{{- /* Links to pages resolve by path, so [x](/software/theme) and
+       [x](theme.md) both reach the page and are checked at build time.
+       External links open in the same tab with rel set. */ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $href := .Destination -}}
+{{- $ext := $u.IsAbs -}}
+{{- if and (not $ext) (not (hasPrefix $href "#")) -}}
+  {{- $p := .Page.GetPage $u.Path -}}
+  {{- with $p -}}
+    {{- $href = .RelPermalink -}}{{- with $u.Fragment }}{{ $href = printf "%s#%s" $href . }}{{ end -}}
+  {{- else -}}
+    {{- with or ($.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
+      {{- $href = .RelPermalink -}}
+    {{- else -}}
+      {{- if hasSuffix $u.Path ".md" -}}
+        {{- errorf "unresolved link %q in %s" $.Destination $.Page.File.Path -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<a href="{{ $href | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $ext }} rel="external noopener"{{ end }}>{{ .Text | safeHTML }}</a>

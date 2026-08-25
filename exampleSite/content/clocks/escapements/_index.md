@@ -1,5 +1,6 @@
 ---
 title: Escapements
+date: 2026-08-01
 description: The part that lets the train advance one tooth at a time.
 ---
 

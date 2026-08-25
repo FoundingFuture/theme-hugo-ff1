@@ -6,6 +6,12 @@
 # so. See the README.
 
 # What counts as near. Tags first, then recency as a tie-break.
+[module]
+  [module.hugoVersion]
+    min = "0.146.0"
+    max = ""
+    extended = true
+
 [related]
   includeNewer = true
   threshold = 20
@@ -19,8 +25,12 @@
     name = "date"
     weight = 10
 
+# Hugo replaces its default taxonomy set with whatever a theme declares, so
+# both defaults are restated here. A site that declares its own [taxonomies]
+# overrides this block entirely.
 [taxonomies]
   tag = "tags"
+  category = "categories"
 
 # There is no JSON index. The tag page renders every piece with its tags on
 # it, and the narrowing reads those, so nothing is fetched and nothing can

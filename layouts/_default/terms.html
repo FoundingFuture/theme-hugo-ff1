@@ -3,11 +3,11 @@
   {{ partial "crumb.html" . }}
   <header class="head">
     <h1>{{ .Title }}</h1>
-    <p class="deck">{{ with .Description }}{{ . }}{{ else }}Pick a tag, then another. Tags that cannot go with what you have picked drop away.{{ end }}</p>
+    <p class="deck">{{ with .Description }}{{ . }}{{ else }}{{ i18n "termsDeck" }}{{ end }}</p>
   </header>
 
   <section class="sec">
-    {{ partial "section-head.html" (dict "title" "Tags"
+    {{ partial "section-head.html" (dict "title" .Title
         "count" (printf "%d" (len .Data.Terms))) }}
     <div class="facets" id="facets">
       {{- range .Data.Terms.Alphabetical }}
@@ -15,21 +15,22 @@
         <span class="fn">{{ .Page.Title }}</span><span class="n">{{ .Count }}</span>
       </a>
       {{- end }}
-      <button class="facet clear" id="facetclear" type="button" hidden>clear</button>
+      <button class="facet clear" id="facetclear" type="button" hidden>{{ i18n "clear" }}</button>
     </div>
   </section>
 
   <section class="sec">
-    <header><h2>{{ i18n "piecesTitle" }}</h2><span class="c" id="tagcount">{{ len (where site.RegularPages "Params.tags" "!=" nil) }}</span></header>
+    <header><h2>{{ i18n "piecesTitle" }}</h2><span class="c" id="tagcount">{{ len (where site.RegularPages (printf "Params.%s" .Data.Plural) "!=" nil) }}</span></header>
     <div class="rows" id="tagged">
-      {{- range (sort (where site.RegularPages "Params.tags" "!=" nil) "Date" "desc") }}
-      <a class="row" href="{{ .RelPermalink }}" data-tags="{{ delimit .Params.tags " " }}">
+      {{- $key := .Data.Plural }}
+      {{- range (where site.RegularPages (printf "Params.%s" $key) "!=" nil) }}
+      <a class="row" href="{{ .RelPermalink }}" data-tags="{{ delimit (index .Params $key) " " }}">
         <span class="d">{{ .Date.Format "01.02" }}</span>
         <span class="t">{{ .Title }}</span>
       </a>
       {{- end }}
     </div>
-    <p class="nomatch" id="nomatch" hidden>Nothing carries all of those together. Drop one.</p>
+    <p class="nomatch" id="nomatch" hidden>{{ i18n "noMatch" }}</p>
   </section>
 </main>
 {{ partial "footer.html" . }}

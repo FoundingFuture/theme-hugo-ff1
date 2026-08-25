@@ -1,6 +1,7 @@
 ---
 title: "Search"
-description: "Every piece on the site, narrowed as you type."
+date: 2026-08-01
+description: "Every piece on the site, narrowed as you type. Titles and tags outrank body text."
 layout: search
 ---
 

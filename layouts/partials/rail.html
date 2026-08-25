@@ -16,6 +16,16 @@
 {{- with $sections }}
   {{ partial "topictree.html" (dict "page" $ "sections" . "depth" 0 "group" "") }}
 {{- end }}
+{{- /* Pages that opted into the main menu through front matter:
+       menus: main, with weight for order. Standard Hugo, so a site keeps
+       its menu when it changes theme. */ -}}
+{{- with site.Menus.main }}
+  <ul class="topics">
+  {{- range . }}
+    <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+  {{- end }}
+  </ul>
+{{- end }}
 {{- with site.Params.extraNav }}
   <ul class="topics">
   {{- range . }}

@@ -1,5 +1,6 @@
 ---
 title: Pendulums
+date: 2026-08-01
 description: A rate that depends on length, and on almost nothing else.
 ---
 
