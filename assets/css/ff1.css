@@ -642,6 +642,12 @@ h4:hover>.anchor,.anchor:focus{opacity:1;color:var(--teal)}
    attributes set the ratio without fixing the size. */
 .body-copy img,.read img{display:block;max-width:100%;height:auto}
 
+/* Set a definition list from Markdown. The term leads, the definition sits
+   under it at the inset a nested row uses. */
+.body-copy dl,.read dl{margin:1.1rem 0}
+.body-copy dt,.read dt{margin-top:.75rem;font-weight:500;color:var(--ink)}
+.body-copy dd,.read dd{margin:.15rem 0 0 1.1rem;color:var(--body)}
+
 /* Wrap an image in a figure when the Markdown carries a title. */
 .body-copy figure,.read figure{margin:1.5rem 0}
 .body-copy figure img,.read figure img{display:block;max-width:100%;height:auto}

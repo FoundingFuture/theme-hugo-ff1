@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" font-family="Helvetica, Arial, sans-serif">
+<rect width="1200" height="900" fill="#fbfaf7"/>
+<polygon points="758.0,560.0 801.4,575.2 744.3,624.3 777.8,655.8 705.7,677.4 723.5,719.9 648.8,710.3 647.8,756.3 583.5,717.1 563.8,758.7 521.0,696.8 486.1,726.8 472.2,652.9 428.1,666.1 445.5,592.9 399.8,587.0 445.5,527.1 406.1,503.2 472.2,467.1 446.0,429.3 521.0,423.2 512.5,378.0 583.5,402.9 594.1,358.1 648.8,409.7 676.7,373.1 705.7,442.6 746.1,420.5 744.3,495.7 790.2,492.0" fill="#fbfaf7" stroke="#1d1d1b" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="600" cy="560" r="158" fill="#fbfaf7" stroke="#1d1d1b" stroke-width="3"/>
+<line x1="617.1" y1="565.6" x2="746.5" y2="607.6" stroke="#1d1d1b" stroke-width="3"/>
+<line x1="600.0" y1="578.0" x2="600.0" y2="714.0" stroke="#1d1d1b" stroke-width="3"/>
+<line x1="582.9" y1="565.6" x2="453.5" y2="607.6" stroke="#1d1d1b" stroke-width="3"/>
+<line x1="589.4" y1="545.4" x2="509.5" y2="435.4" stroke="#1d1d1b" stroke-width="3"/>
+<line x1="610.6" y1="545.4" x2="690.5" y2="435.4" stroke="#1d1d1b" stroke-width="3"/>
+<circle cx="600" cy="560" r="14" fill="#cfd8dc" stroke="#1d1d1b" stroke-width="3"/>
+<path d="M500,490 A120,120 0 0,1 700,490" fill="none" stroke="#1d1d1b" stroke-width="2"/>
+<path d="M700,490 l-17,-3 M700,490 l-5,-16" fill="none" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="636" y1="110" x2="636" y2="820" stroke="#1d1d1b" stroke-width="8" stroke-linecap="round"/>
+<polygon points="636,368.0 576,376.0 576,392.0 636,384.0" fill="#cfd8dc" stroke="#1d1d1b" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="636,736.0 696,728.0 696,744.0 636,752.0" fill="#fbfaf7" stroke="#1d1d1b" stroke-width="3" stroke-linejoin="round"/>
+<rect x="620" y="130" width="32" height="20" fill="#fbfaf7" stroke="#1d1d1b" stroke-width="2.5"/>
+<rect x="620" y="786" width="32" height="20" fill="#fbfaf7" stroke="#1d1d1b" stroke-width="2.5"/>
+<line x1="386" y1="110" x2="886" y2="110" stroke="#1d1d1b" stroke-width="6" stroke-linecap="round"/>
+<line x1="406" y1="101" x2="406" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="446" y1="101" x2="446" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="486" y1="101" x2="486" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="526" y1="101" x2="526" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="566" y1="101" x2="566" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="606" y1="101" x2="606" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="686" y1="101" x2="686" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="726" y1="101" x2="726" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="766" y1="101" x2="766" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="806" y1="101" x2="806" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="846" y1="101" x2="846" y2="119" stroke="#1d1d1b" stroke-width="2"/>
+<rect x="428" y="76" width="36" height="68" rx="4" fill="#cfd8dc" stroke="#1d1d1b" stroke-width="2.5"/>
+<rect x="808" y="76" width="36" height="68" rx="4" fill="#cfd8dc" stroke="#1d1d1b" stroke-width="2.5"/>
+<path d="M526,52 A130,55 0 0,1 746,52" fill="none" stroke="#1d1d1b" stroke-width="2"/>
+<path d="M526,52 l14,-9 M526,52 l16,5 M746,52 l-14,-9 M746,52 l-16,5" fill="none" stroke="#1d1d1b" stroke-width="2"/>
+<line x1="851" y1="104" x2="900" y2="100" stroke="#1d1d1b" stroke-width="1.2"/>
+<text x="908" y="108" font-size="22" text-anchor="start" fill="#1d1d1b">Foliot</text>
+<line x1="844" y1="124" x2="900" y2="150" stroke="#1d1d1b" stroke-width="1.2"/>
+<text x="908" y="158" font-size="22" text-anchor="start" fill="#1d1d1b">Adjustable weight</text>
+<line x1="641" y1="250" x2="900" y2="250" stroke="#1d1d1b" stroke-width="1.2"/>
+<text x="908" y="258" font-size="22" text-anchor="start" fill="#1d1d1b">Verge</text>
+<line x1="596" y1="368" x2="900" y2="346" stroke="#1d1d1b" stroke-width="1.2"/>
+<text x="908" y="354" font-size="22" text-anchor="start" fill="#1d1d1b">Upper pallet, engaged</text>
+<line x1="676" y1="740" x2="900" y2="764" stroke="#1d1d1b" stroke-width="1.2"/>
+<text x="908" y="772" font-size="22" text-anchor="start" fill="#1d1d1b">Lower pallet, clear</text>
+<line x1="586" y1="554" x2="340" y2="490" stroke="#1d1d1b" stroke-width="1.2"/>
+<text x="332" y="498" font-size="22" text-anchor="end" fill="#1d1d1b">Arbor, driven by the train</text>
+<line x1="450" y1="590" x2="340" y2="600" stroke="#1d1d1b" stroke-width="1.2"/>
+<text x="332" y="608" font-size="22" text-anchor="end" fill="#1d1d1b">Crown wheel</text>
+<line x1="424" y1="690" x2="340" y2="720" stroke="#1d1d1b" stroke-width="1.2"/>
+<text x="332" y="728" font-size="22" text-anchor="end" fill="#1d1d1b">Saw-shaped teeth, odd count</text>
+<text x="600" y="864" font-size="22" text-anchor="middle" fill="#666">Schematic, not to scale. The pallets stand about 100 degrees apart on the verge.</text>
+</svg>

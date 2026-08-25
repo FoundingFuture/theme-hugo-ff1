@@ -7,7 +7,9 @@
 {{- if not $u.IsAbs -}}
   {{- $r := or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
   {{- with $r -}}
-    {{- if eq .ResourceType "image" -}}
+      {{- /* An SVG reports ResourceType image and carries no Width. Ask
+             whether the resource has meta before measuring it. */ -}}
+      {{- if reflect.IsImageResourceWithMeta . -}}
       {{- if gt .Width 1600 }}{{ $r = .Resize "1600x" }}{{ end -}}
       {{- $src = $r.RelPermalink -}}{{- $w = $r.Width -}}{{- $h = $r.Height -}}
     {{- else -}}

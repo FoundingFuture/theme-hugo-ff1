@@ -14,7 +14,7 @@ pushes those pallets alternately. The verge swings back and forth as they escape
 
 <!--more-->
 
-![Crown wheel with saw-shaped teeth meeting the two pallets of a vertical verge](verge-diagram.png "Verge escapement, crown wheel and pallets")
+![Crown wheel with saw-shaped teeth meeting the two pallets of a vertical verge](verge-diagram.svg "Verge escapement, crown wheel and pallets")
 
 ## Parts
 
