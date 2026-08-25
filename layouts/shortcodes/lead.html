@@ -1,11 +1,5 @@
-{{/* The opening line of a reading block, set large.
+{{/* The opening statement of a reading block, set large.
 
      {{< lead >}}What this piece is about.{{< /lead >}}
-
-     A paragraph, not a heading. It reads like one and used to be marked up
-     as an h2, which put a sentence into the document outline where a
-     section label belongs, and had a screen reader announce it as a
-     heading. A page's own standfirst comes from its description and needs
-     no shortcode at all.
 */}}
-<p class="lead">{{ .Inner | markdownify | plainify }}</p>
+<h2 class="lead">{{ .Inner | markdownify | plainify }}</h2>
