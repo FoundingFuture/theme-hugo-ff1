@@ -172,6 +172,25 @@ doing the scrolling. The strip takes focus, so it is reachable by keyboard.
 `/screenshots/` in the example site is the shortcode carrying the pictures
 above.
 
+## Saying what a piece is
+
+A title usually explains itself. "The deadbeat escapement" needs no help.
+A product name does not: on a list of pieces, `FoundingFuture I` tells a
+reader nothing.
+
+Give such a page a `kind` and every listing row carries a small label in the
+topic's colour.
+
+```yaml
+---
+title: "FoundingFuture I, a Hugo theme"
+kind: "hugo theme"
+---
+```
+
+Use it where the title cannot carry the job, and leave it off everywhere
+else. A label on every row is a label nobody reads.
+
 ## Video and audio, without the visit
 
 `embed` puts a YouTube video or a SoundCloud track on the page as a poster

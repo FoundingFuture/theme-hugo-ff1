@@ -1,5 +1,6 @@
 ---
 title: "Screenshots"
+kind: "pictures"
 description: "The theme carrying real content, photographed as it stands."
 ---
 
