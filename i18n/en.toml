@@ -4,9 +4,9 @@
 # the site's file over the theme's, key by key, so a site changes one word
 # without restating the rest.
 #
-# The defaults read as a personal publishing site, because that is what the
-# theme was cut for. A documentation site will want "Sections" where this
-# says "Topics".
+# The defaults speak to readers rather than to authors: a visitor knows what
+# a topic is and has no reason to know what Hugo calls a section. Change any
+# of them if your site disagrees.
 
 [mainPage]
 other = "Main page"

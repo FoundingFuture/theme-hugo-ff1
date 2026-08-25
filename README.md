@@ -236,9 +236,14 @@ other = "Sections"
 other = "Pages"
 ```
 
-The defaults read as a personal publishing site, because that is what the
-theme was cut for. A documentation site will want "Sections" where the
-theme says "Topics".
+The defaults speak to readers rather than to authors. Your folders sit under
+a heading that says "Topics", not "Sections", because a visitor knows what a
+topic is and has no reason to know what Hugo calls a section. Change it if
+your site disagrees.
+
+Every key is checked. One defined and never said is dead weight; one said
+and never defined renders as nothing at all, which is the quiet way a
+heading goes missing.
 
 ## Licence
 
