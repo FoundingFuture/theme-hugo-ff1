@@ -12,31 +12,31 @@ them.
 **[See it running](https://foundingfuture.com/template/)**
 
 <p align="center">
-  <img src="exampleSite/static/img/shots/front.png"
+  <img src="exampleSite/content/screenshots/front.png"
        alt="The front page, with two topics open in the menu" width="820">
 </p>
 
 <table>
 <tr>
-<td width="50%"><img src="exampleSite/static/img/shots/depth.png"
+<td width="50%"><img src="exampleSite/content/screenshots/depth.png"
     alt="A topic three levels down with the tree open"><br>
     Three levels down. The menu is the content tree.</td>
-<td width="50%"><img src="exampleSite/static/img/shots/piece.png"
+<td width="50%"><img src="exampleSite/content/screenshots/piece.png"
     alt="A piece showing contents, pager and related pages"><br>
     One piece: contents, linked headings, previous and next.</td>
 </tr>
 <tr>
-<td><img src="exampleSite/static/img/shots/search.png"
+<td><img src="exampleSite/content/screenshots/search.png"
     alt="The search page part way through a query"><br>
     Search, mid-query. The index compiles into the build.</td>
-<td><img src="exampleSite/static/img/shots/tags.png"
+<td><img src="exampleSite/content/screenshots/tags.png"
     alt="The tag page after one tag was clicked"><br>
     Tags after one click. Dead ends have gone.</td>
 </tr>
 </table>
 
 <p align="center">
-  <img src="exampleSite/static/img/shots/narrow.png"
+  <img src="exampleSite/content/screenshots/narrow.png"
        alt="The same site at 430 pixels wide, menu folded into a bar" width="320"><br>
   <em>At 430 pixels the rail folds into a bar.</em>
 </p>
