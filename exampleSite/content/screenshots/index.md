@@ -8,6 +8,7 @@ params:
 
 Every picture below is this site. Click one to see it full size.
 
+<!-- requires theme shortcode: gallery -->
 {{< gallery >}}
 front.png  | The front page, two topics open
 depth.png  | Three levels down, the tree open beside it
@@ -15,6 +16,7 @@ piece.png  | One piece: contents, headings, previous and next
 search.png | Search part way through a query
 tags.png   | Tags after one click, dead ends gone
 narrow.png | At 430 pixels, the rail folded into a bar
+<!-- requires theme shortcode: gallery -->
 {{< /gallery >}}
 
 That is the `gallery` shortcode. Put the pictures in the page's own folder

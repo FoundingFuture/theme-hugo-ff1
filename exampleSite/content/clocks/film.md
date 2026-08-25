@@ -10,6 +10,7 @@ params:
 An escapement is easier to watch than to describe. This is the theme's
 `embed` shortcode, which is a picture and a play button until you press it.
 
+<!-- requires theme shortcode: embed -->
 {{< embed at="youtube" id="aqz-KE-bpKQ" title="Big Buck Bunny, the Blender Foundation's open film" >}}
 
 Nothing above came from YouTube. The poster was fetched once when this site
